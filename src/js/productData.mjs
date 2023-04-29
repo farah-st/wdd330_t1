@@ -6,10 +6,10 @@ function convertToJson(res) {
   }
 }
 
-export function getData(category = "tents") {
-  return fetch(`../json/${category}.json`)
-    .then(convertToJson)
-    .then((data) => data);
+export async function getData(category = "tents") {
+  const res = await fetch(`../json/${category}.json`);
+  const data = await convertToJson(res);
+  return data;
 }
 
 export async function findProductById(id) {
