@@ -1,5 +1,11 @@
-export function getLocalStorage(item) {
-  return JSON.parse(localStorage.getItem(item));
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+
+// Creates a new cart if empty
+if (!(getLocalStorage("so-cart") === null)) {
+  renderCartContents();
+} else {
+  const newCart = [];
+  setLocalStorage("so-cart", newCart);
 }
 
 function renderCartContents() {
