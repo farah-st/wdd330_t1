@@ -13,11 +13,14 @@ async function addToCartHandler(e) {
   addProductToCart(product);
 }
 
+console.log(findProductById(getParam("product")));
+
+
 // add listener to Add to Cart button
 document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
 
-  getParam();
+
 
   
