@@ -1,4 +1,4 @@
-import { getParam } from "./utils.mjs";
+import { getParam,updateCartSuperscript } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 import productDetails, {addProductToCart} from "./productDetails.mjs";
 
@@ -6,6 +6,7 @@ import productDetails, {addProductToCart} from "./productDetails.mjs";
 async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
+  updateCartSuperscript();
 }
 
 // add listener to Add to Cart button
@@ -17,4 +18,5 @@ document
 const productID = getParam("product");
 productDetails(productID);
 
+updateCartSuperscript();
   
