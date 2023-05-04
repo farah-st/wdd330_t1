@@ -29,6 +29,8 @@ function renderProductDetails(product){
 
 
 
+
+
 // add product to cart
 export function addProductToCart(product) {
 
