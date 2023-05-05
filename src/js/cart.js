@@ -42,7 +42,12 @@ function cartItemTemplate(item) {
 function removeProductFromCart(item) {
 
   const cart = getLocalStorage("so-cart");
+
+  cart.splice(1, 1);
+
   setLocalStorage("so-cart", cart);
+
+  renderCartContents();
 }
 
 
