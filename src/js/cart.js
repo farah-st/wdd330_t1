@@ -18,7 +18,7 @@ function renderCartContents() {
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
- <span id="cart_remove" data-id="${item.Id}" >X ${item.Id}</span>
+  <span id="cart_remove" data-id="${item.Id}" >X ${item.Id}</span>
     <img
       src="${item.Image}"
       alt="${item.Name}"
@@ -42,6 +42,11 @@ function cartItemTemplate(item) {
 function removeProductFromCart(item) {
 
   const cart = getLocalStorage("so-cart");
+  const htmlItems = cart.map((item) => cartItemTemplate(item));
+  var dataId = htmlItems[0];
+  dataId = document.getElementById("#data-id") ;
+  console.log(dataId)
+  
 
   cart.splice(1, 1);
 
