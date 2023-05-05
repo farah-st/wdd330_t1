@@ -1,3 +1,4 @@
+import {findProductById, getData} from "./productData.mjs";
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 // Creates a new cart if empty
@@ -17,6 +18,7 @@ function renderCartContents() {
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
+ <span id="cart_remove" data-id="${item.Id}" >X ${item.Id}</span>
     <img
       src="${item.Image}"
       alt="${item.Name}"
@@ -33,4 +35,18 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
-renderCartContents();
+ renderCartContents();
+
+
+// // remove product to cart
+function removeProductFromCart(item) {
+
+  const cart = getLocalStorage("so-cart");
+  setLocalStorage("so-cart", cart);
+}
+
+
+// add listener to remove from Cart button
+document
+  .getElementById("cart_remove")
+  .addEventListener("click", removeProductFromCart);
