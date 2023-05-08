@@ -1,3 +1,3 @@
-import { updateCartSuperscript } from "./utils.mjs"
+import { updateCartSuperscript } from "./utils.mjs";
 
 updateCartSuperscript();

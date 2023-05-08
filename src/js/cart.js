@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, updateCartSuperscript } from "./utils.mjs";
+import { getLocalStorage, updateCartSuperscript } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");

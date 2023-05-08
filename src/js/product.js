@@ -1,6 +1,6 @@
-import { getParam,updateCartSuperscript } from "./utils.mjs";
+import { getParam, updateCartSuperscript } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
-import productDetails, {addProductToCart} from "./productDetails.mjs";
+import productDetails, { addProductToCart } from "./productDetails.mjs";
 
 // add to cart button event handler
 async function addToCartHandler(e) {
@@ -14,9 +14,8 @@ document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
 
-// search product 
+// search product
 const productID = getParam("product");
 productDetails(productID);
 
 updateCartSuperscript();
-  
