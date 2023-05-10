@@ -28,3 +28,9 @@ export function getParam(param) {
   const product = urlParams.get(param);
   return product;
 }
+
+export function updateCartSuperscript (){
+  const cartSuperscript = document.getElementById("cart-superscript");
+  const cart = getLocalStorage("so-cart");
+  cartSuperscript.innerHTML = cart.length;
+}
