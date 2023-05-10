@@ -1,12 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-
-// Creates a new cart if empty
-// if (!(getLocalStorage("so-cart") === null)) {
-//   renderCartContents();
-// } else {
-//   const newCart = [];
-//   setLocalStorage("so-cart", newCart);
-// }
+import { getLocalStorage, updateCartSuperscript } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -34,3 +26,4 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+updateCartSuperscript();
