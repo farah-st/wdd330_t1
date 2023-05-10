@@ -1,3 +1,4 @@
+import { doc } from "prettier";
 import {getData, findProductById} from "./productData.mjs";
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
@@ -47,14 +48,18 @@ const killButtons = document.querySelectorAll('.kill-product');
   //  const dataId = document.querySelectorAll("[data-id]");
   //   dataId.forEach(id => console.log(id));
 
+ 
+  
+
 // Agregar un "event listener" para cada elemento
 killButtons.forEach(button => {
   button.addEventListener('click', function() {
     // Obtener el elemento padre del botón actual y eliminarlo
     const cart = getLocalStorage('so-cart');
     const parentElement = this.parentElement; 
-    
     parentElement.remove();
+    console.log(id);
+    renderCartContents();
   });
 });
 
