@@ -40,61 +40,11 @@ function cartItemTemplate(item,index) {
 }
 
  renderCartContents();
-
-
-
-
 // const killButtons = document.querySelectorAll('.kill-product');
 //   //  const dataId = document.querySelectorAll("[data-id]");
 //   //   dataId.forEach(id => console.log(id));
 
  
-  
-
-// // Agregar un "event listener" para cada elemento
-// killButtons.forEach(button => {
-//   button.addEventListener('click', function(id) {
-//     // Obtener el elemento padre del botón actual y eliminarlo
-//     const cart = getLocalStorage('so-cart');
-//     const parentElement = this.parentElement; 
-//     parentElement.remove();
-//     console.log(id);
-//     renderCartContents();
-//   });
-// });
-
-
-
-
-
-
-// function renderCartContents() {
-//   const cartItems = getLocalStorage("so-cart");
-//   const htmlItems = cartItems.map((item, index) => cartItemTemplate(item, index));
-//   document.querySelector(".product-list").innerHTML = htmlItems.join("");
-// }
-
-// function cartItemTemplate(item, index) {
-//   const newItem = `<li class="cart-card divider">
-//   <a href="#" class="cart-card__image">
-//   <span class="cart_remove">X ${index}</span>
-//     <img
-//       src="${item.Image}"
-//       alt="${item.Name}"
-//     />
-//   </a>
-//   <a href="#">
-//     <h2 class="card__name">${item.Name}</h2>
-//   </a>
-//   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-//   <p class="cart-card__quantity">qty: 1</p>
-//   <p class="cart-card__price">$${item.FinalPrice}</p>
-// </li>`;
-
-//   return newItem;
-// }
-
-//  renderCartContents();
 
 
 // // // // remove product to cart
@@ -116,18 +66,18 @@ console.log(productName)
 
 renderCartContents();
 // add listener to remove from Cart button
-document
-  .querySelector(".kill-product")
-  .addEventListener("click", removeProductFromCart);
+// document
+//   .querySelector(".kill-product")
+//   .addEventListener("click", removeProductFromCart);
 
 
-//   const killButtons = document.querySelectorAll('.cart-remove');
+  const killButtons = document.querySelectorAll('.kill-product');
 
 // // Agregar un "event listener" para cada elemento
-// killButtons.forEach(button => {
-//   button.addEventListener('click', function() {
-//     // Obtener el elemento padre del botón actual y eliminarlo
-//     const parentElement = this.parentElement;
-//     parentElement.remove();
-//   });
-// });
+killButtons.forEach(button => {
+  button.addEventListener('click', function() {
+    // Obtener el elemento padre del botón actual y eliminarlo
+    const parentElement = this.parentElement;
+    parentElement.remove();
+  });
+});
