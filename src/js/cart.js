@@ -53,7 +53,7 @@ const killButtons = document.querySelectorAll('.kill-product');
 
 // Agregar un "event listener" para cada elemento
 killButtons.forEach(button => {
-  button.addEventListener('click', function() {
+  button.addEventListener('click', function(id) {
     // Obtener el elemento padre del botón actual y eliminarlo
     const cart = getLocalStorage('so-cart');
     const parentElement = this.parentElement; 
