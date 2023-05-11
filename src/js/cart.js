@@ -44,34 +44,24 @@ function cartItemTemplate(item,index) {
 
 
 
-const killButtons = document.querySelectorAll('.kill-product');
-  //  const dataId = document.querySelectorAll("[data-id]");
-  //   dataId.forEach(id => console.log(id));
+// const killButtons = document.querySelectorAll('.kill-product');
+//   //  const dataId = document.querySelectorAll("[data-id]");
+//   //   dataId.forEach(id => console.log(id));
 
  
   
 
-// Agregar un "event listener" para cada elemento
-killButtons.forEach(button => {
-  button.addEventListener('click', function(id) {
-    // Obtener el elemento padre del botón actual y eliminarlo
-    const cart = getLocalStorage('so-cart');
-    const parentElement = this.parentElement; 
-    parentElement.remove();
-    console.log(id);
-    renderCartContents();
-  });
-});
-
-
-
-
-
-
-
-
-
-
+// // Agregar un "event listener" para cada elemento
+// killButtons.forEach(button => {
+//   button.addEventListener('click', function(id) {
+//     // Obtener el elemento padre del botón actual y eliminarlo
+//     const cart = getLocalStorage('so-cart');
+//     const parentElement = this.parentElement; 
+//     parentElement.remove();
+//     console.log(id);
+//     renderCartContents();
+//   });
+// });
 
 
 
@@ -108,27 +98,27 @@ killButtons.forEach(button => {
 
 
 // // // // remove product to cart
-// // function removeProductFromCart(item) {
+function removeProductFromCart(item) {
 
-// //   const cart = getLocalStorage("so-cart");
-// //   const htmlItems = cart.map((item) => cartItemTemplate(item));
-// //   var dataId = htmlItems[0];
-// //   dataId = document.getElementById("#data-id") ;
-// //   console.log(dataId)
+  const cart = getLocalStorage("so-cart");
+  const htmlItems = cart.map((item) => cartItemTemplate(item));
+  var dataId = htmlItems[0];
+  dataId = document.getElementById("#data-id") ;
+  
   
 
-// //   cart.splice(index, 1);
+  cart.splice(1, 1);
+console.log(productName)
+  setLocalStorage("so-cart", cart);
 
-// //   setLocalStorage("so-cart", cart);
+  renderCartContents();
+}
 
-// //   renderCartContents();
-// // }
-
-
-// // // add listener to remove from Cart button
-// // document
-// //   .querySelector("cart_remove")
-// //   .addEventListener("click", removeProductFromCart);
+renderCartContents();
+// add listener to remove from Cart button
+document
+  .querySelector(".kill-product")
+  .addEventListener("click", removeProductFromCart);
 
 
 //   const killButtons = document.querySelectorAll('.cart-remove');
