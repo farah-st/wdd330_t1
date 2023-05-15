@@ -34,3 +34,17 @@ export function updateCartSuperscript (){
   const cart = getLocalStorage("so-cart");
   cartSuperscript.innerHTML = cart.length;
 }
+
+export function renderListWithTemplate (templateFn, parentElement, list, position = "afterbegin", clear = true, productToRender = 4){
+// Renders products using a template
+
+  // If clear is true, then clean the parentElement
+  if (clear) parentElement.innerHTML = "";
+
+  // creates an Array with the templates joining the product info
+  const htmlArray =  list.map(templateFn).slice(0,productToRender);
+
+  // joins the array and injects the HTML into the parentElement
+  parentElement.insertAdjacentHTML(position,htmlArray.join(''));
+
+}
