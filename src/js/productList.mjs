@@ -22,24 +22,8 @@ export default async function productList(selector, category){
 
     // get the list of products 
     const products = await getData(category);
-    
-    // Remove unwanted tents
-      // Tents to keep: 344YJ, 880RR, 985PR, 985RF
-      // Tents to delete: 880RT, 989CG
-        for (let i = 0; i < products.length; i++) {
-  
-            if (products[i].Id == "989CG" || products[i].Id == "880RT") {
-              products.splice(i, 1); 
-            }
-          console.log(products[i].Id)
-        }
-    
-        // render out the product list to the element
+
+    // render out the product list to the element
     renderListWithTemplate(productCardTemplate, element, products);
-   
-   
 }
-
-
-
 
