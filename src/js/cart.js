@@ -78,6 +78,7 @@ killButtons.forEach(button => {
   button.addEventListener('click', function() {
     // Obtener el elemento padre del botón actual y eliminarlo
     const parentElement = this.parentElement;
+    console.log(button[parentElement])
     parentElement.remove();
   });
 });
