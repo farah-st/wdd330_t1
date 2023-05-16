@@ -48,3 +48,19 @@ export function renderListWithTemplate (templateFn, parentElement, list, positio
   parentElement.insertAdjacentHTML(position,htmlArray.join(''));
 
 }
+
+
+export function renderWithTemplate (templateFn, parentElement, data, position = "afterbegin", clear = true, productToRender = 4){
+  // Renders products using a template
+  
+    // If clear is true, then clean the parentElement
+    if (clear) parentElement.innerHTML = "";
+  
+
+    parentElement.insertAdjacentHTML(position, templateFn);
+    if(callback) {
+        callback(data);
+    }
+  
+  }
+  
