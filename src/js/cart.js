@@ -72,13 +72,21 @@ renderCartContents();
 
 
   const killButtons = document.querySelectorAll('.kill-product');
+  let x = 0;
+  // killButtons.button.addEventListener('click', removeItem);
+  // function removeItem() {
+  //   const t = querySelectorAll("#data-id");
+  //   console.log(t)
+  
+
 
 // // Agregar un "event listener" para cada elemento
 killButtons.forEach(button => {
   button.addEventListener('click', function() {
     // Obtener el elemento padre del botón actual y eliminarlo
-    const parentElement = this.parentElement;
-    console.log(button[parentElement])
-    parentElement.remove();
+   // let getDataVal = document.getElementById('kill-product').getAttribute('data-id')
+   const parentElement = this.parentElement;
+   console.log(id)
+   //parentElement.splice(index, 1);
   });
 });
