@@ -50,17 +50,23 @@ export function renderListWithTemplate (templateFn, parentElement, list, positio
 }
 
 
-export function renderWithTemplate (templateFn, parentElement, data, position = "afterbegin", clear = true, productToRender = 4){
+export function renderWithTemplate (templateFn,
+                                    parentElement,
+                                    data,
+                                    callback,
+                                    position = "afterbegin",
+                                    clear = true){
   // Renders products using a template
   
     // If clear is true, then clean the parentElement
     if (clear) parentElement.innerHTML = "";
   
+    const htmlData =  templateFn(data);
 
-    parentElement.insertAdjacentHTML(position, templateFn);
+    parentElement.insertAdjacentHTML(position, htmlData);
     if(callback) {
         callback(data);
     }
-  
+    
   }
   
