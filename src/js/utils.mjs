@@ -67,6 +67,26 @@ export function renderWithTemplate (templateFn,
     if(callback) {
         callback(data);
     }
-    
+}
+
+ function loadTemplate(path) {
+    return async function () {
+  const response = await fetch(path);
+  if (response.ok) {
+    const html = await response.text();
+    return html;
   }
+   }
+
+}
+
+export function loadHeaderFooter() {
+   const headerTemplateFn = loadTemplate("./partials/header.html");
+   
+   const footerTemplateFn = loadTemplate("./partials/footer.html");
+
+   const headerE1 = document.querySelector("header");
+   const footerE1 = document.querySelector("footer");
+   renderWithTemplate(headerTemplateFn, headerE1);
+}
   
