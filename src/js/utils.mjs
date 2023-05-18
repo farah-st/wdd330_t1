@@ -88,7 +88,7 @@ export function loadHeaderFooter() {
 
    const headerE1 = document.querySelector("header");
    const footerE1 = document.querySelector("footer");
-   renderWithTemplate(headerTemplateFn, headerE1);
+   renderWithTemplate(headerTemplateFn, headerE1, null, updateCartSuperscript);
    renderWithTemplate(footerTemplateFn, footerE1);
 }
   
