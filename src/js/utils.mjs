@@ -42,7 +42,7 @@ export function renderListWithTemplate (templateFn, parentElement, list, positio
   if (clear) parentElement.innerHTML = "";
 
   // creates an Array with the templates joining the product info
-  const htmlArray =  list.map(templateFn).slice(0,productToRender);
+  const htmlArray =  list.map(templateFn);
 
   // joins the array and injects the HTML into the parentElement
   parentElement.insertAdjacentHTML(position,htmlArray.join(''));

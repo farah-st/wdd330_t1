@@ -1,8 +1,10 @@
-import { renderWithTemplate } from "./utils.mjs";
+import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
 
-renderWithTemplate
-
-
+export default function shoppingcart() {
+  const cartItems = getLocalStorage("so-cart");
+  const htmlItems = document.querySelector(".product-list");
+  renderListWithTemplate(cartItemTemplate,htmlItems,cartItems);
+}
 
 function cartItemTemplate(item) {
     const newItem = `<li class="cart-card divider">
