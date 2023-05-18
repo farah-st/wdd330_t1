@@ -41,7 +41,6 @@ function backpackAnimation(){
         backpack[0].style.top = 34 + 'px';
         backpack[0].style.right = -15 + 'px';
       }
-      console.log(i);
   }
 }
 
