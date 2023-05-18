@@ -97,6 +97,11 @@ button {
 /* End utility classes */
 
 /* Cart icon styles */
+
+.backpack {
+  position: absolute;
+}
+
 .cart {
   padding-top: 1em;
   position: relative;
