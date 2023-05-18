@@ -6,8 +6,9 @@ import productDetails, { addProductToCart } from "./productDetails.mjs";
 async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
-  updateCartSuperscript();
+  
   backpackAnimation();
+  
 }
 
 // add listener to Add to Cart button
@@ -39,9 +40,11 @@ function backpackAnimation(){
         backpack[0].style.top = 0 + 'px';
         backpack[0].style.right = 0 + 'px'; 
 
-        
+        updateCartSuperscript();
       }
+      
   }
+  
 }
 
 // search product
