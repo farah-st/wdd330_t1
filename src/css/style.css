@@ -98,10 +98,6 @@ button {
 
 /* Cart icon styles */
 
-.backpack {
-  position: absolute;
-}
-
 .cart {
   padding-top: 1em;
   position: relative;
@@ -128,6 +124,7 @@ button {
   font-size: 0.8em;
   width: 1rem;
   height: 1rem;
+  z-index: 3;
   display: block;
 }
 /* End cart icon styles */

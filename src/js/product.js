@@ -26,20 +26,20 @@ function backpackAnimation(){
   let pos = 10;
     function myInterval(){
   backpack[0].style.backgroundColor = backpack[0].style.backgroundColor == "green" ? "white" : "green";
-  backpack[0].style.width = 30;
-  //backpack[0].style.display = "active";
-
+  backpack[0].style.position = "absolute";
   backpack[0].style.top = pos + 'px';
   backpack[0].style.right = pos + 'px';
       pos += 25;
       i++;
 
       if (i == 18) {
+        backpack[0].style.position = "relative";
         clearInterval(interval);
         backpack[0].style.backgroundColor = "white";
-        backpack[0].style.width = 24;
-        backpack[0].style.top = 34 + 'px';
-        backpack[0].style.right = -15 + 'px';
+        backpack[0].style.top = 0 + 'px';
+        backpack[0].style.right = 0 + 'px'; 
+
+        
       }
   }
 }
