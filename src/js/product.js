@@ -6,7 +6,7 @@ import productDetails, { addProductToCart } from "./productDetails.mjs";
 async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
-  updateCartSuperscript();
+  // updateCartSuperscript();
 }
 
 // add listener to Add to Cart button
@@ -19,4 +19,4 @@ const productID = getParam("product");
 productDetails(productID);
 
 loadHeaderFooter();
-updateCartSuperscript();
+// updateCartSuperscript();
