@@ -18,6 +18,5 @@ document
 const productID = getParam("product");
 productDetails(productID);
 
-
 loadHeaderFooter();
 updateCartSuperscript();

@@ -1,3 +1,1 @@
-export class Alert{
-
-}
+export class Alert {}
