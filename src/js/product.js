@@ -1,4 +1,4 @@
-import { getParam, updateCartSuperscript } from "./utils.mjs";
+import { getParam, loadHeaderFooter, updateCartSuperscript } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 import productDetails, { addProductToCart } from "./productDetails.mjs";
 
@@ -18,4 +18,5 @@ document
 const productID = getParam("product");
 productDetails(productID);
 
+loadHeaderFooter();
 updateCartSuperscript();

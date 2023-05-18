@@ -42,9 +42,53 @@ export function renderListWithTemplate (templateFn, parentElement, list, positio
   if (clear) parentElement.innerHTML = "";
 
   // creates an Array with the templates joining the product info
-  const htmlArray =  list.map(templateFn).slice(0,productToRender);
+  const htmlArray =  list.map(templateFn);
 
   // joins the array and injects the HTML into the parentElement
   parentElement.insertAdjacentHTML(position,htmlArray.join(''));
 
 }
+
+
+export async function renderWithTemplate (templateFn,
+                                    parentElement,
+                                    data,
+                                    callback,
+                                    position = "afterbegin",
+                                    clear = true){
+  // Renders products using a template
+  
+    // If clear is true, then clean the parentElement
+    if (clear) parentElement.innerHTML = "";
+  
+    const htmlData =  await templateFn(data);
+
+    parentElement.insertAdjacentHTML(position, htmlData);
+    if(callback) {
+        callback(data);
+    }
+}
+
+ function loadTemplate(path) {
+    return async function () {
+  const response = await fetch(path);
+  if (response.ok) {
+    const html = await response.text();
+    return html;
+  }
+   }
+
+}
+
+export function loadHeaderFooter() {
+
+   const headerTemplateFn = loadTemplate("/partials/header.html");
+   
+   const footerTemplateFn = loadTemplate("/partials/footer.html");
+
+   const headerE1 = document.querySelector("header");
+   const footerE1 = document.querySelector("footer");
+   renderWithTemplate(headerTemplateFn, headerE1);
+   renderWithTemplate(footerTemplateFn, footerE1);
+}
+  
