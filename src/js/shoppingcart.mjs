@@ -24,3 +24,30 @@ function cartItemTemplate(item) {
   
     return newItem;
   }
+
+  function getTotal() {
+
+    let cart = getLocalStorage("so-cart");
+    let GrandTotal = 0;
+         for(let t = 0; t < cart.length; t++){
+       GrandTotal += cart[t].FinalPrice;
+     }
+         // const cartTotal = document.getElementById("cart-total");
+         // cartTotal.innerHTML = GrandTotal;
+         renderCartTotal(GrandTotal);
+   return GrandTotal;
+     }
+   
+   
+   function renderCartTotal (GrandTotal) {
+     let cart = getLocalStorage("so-cart");
+     if (cart.length > 0){
+           const cartTotal = document.querySelector("cart-footer hide");
+     document.getElementById("cart-total").innerHTML =  `<p id="cart-total">Total: $${GrandTotal}</p>`;
+     }
+   
+    
+   }
+
+   shoppingcart();
+   getTotal();
