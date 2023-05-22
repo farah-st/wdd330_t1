@@ -30,9 +30,14 @@ export function getParam(param) {
 }
 
 export function updateCartSuperscript (){
-  const cartSuperscript = document.getElementById("cart-superscript");
+  try{
+    const cartSuperscript = document.getElementById("cart-superscript");
   const cart = getLocalStorage("so-cart");
   cartSuperscript.innerHTML = cart.length;
+  } catch (error) {
+    console.log(error);
+  }
+  
 }
 
 export function renderListWithTemplate (templateFn, parentElement, list, position = "afterbegin", clear = true, productToRender = 4){

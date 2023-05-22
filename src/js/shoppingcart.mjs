@@ -1,9 +1,15 @@
 import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
 
 export default function shoppingcart() {
-  const cartItems = getLocalStorage("so-cart");
-  const htmlItems = document.querySelector(".product-list");
-  renderListWithTemplate(cartItemTemplate,htmlItems,cartItems);
+  try {
+    const cartItems = getLocalStorage("so-cart");
+    const htmlItems = document.querySelector(".product-list");
+    renderListWithTemplate(cartItemTemplate,htmlItems,cartItems);
+  } catch (error) {
+    const emptyCartAlert = cartEmptyTemplate();
+    document.querySelector(".products").innerHTML = emptyCartAlert;
+
+  } 
 }
 
 function cartItemTemplate(item) {
@@ -23,11 +29,23 @@ function cartItemTemplate(item) {
   </li>`;
   
     return newItem;
-  }
+};
+
+function cartEmptyTemplate() {
+  return  `<section class="cart-empty-alert">
+            <h2>Your Cart is Empty</h2>
+            <p>Looks like you haven't added anything to your cart yet</p>
+            <div class="product-detail">
+              <a href="/">
+                <button>Return to Shop</button>
+              </a>
+            </div>
+          </section>`
+};
 
   function getTotal() {
-
-    let cart = getLocalStorage("so-cart");
+    try {
+      let cart = getLocalStorage("so-cart");
     let GrandTotal = 0;
          for(let t = 0; t < cart.length; t++){
        GrandTotal += cart[t].FinalPrice;
@@ -36,18 +54,20 @@ function cartItemTemplate(item) {
          // cartTotal.innerHTML = GrandTotal;
          renderCartTotal(GrandTotal);
    return GrandTotal;
-     }
-   
-   
-   function renderCartTotal (GrandTotal) {
-     let cart = getLocalStorage("so-cart");
-     if (cart.length > 0){
-           const cartTotal = document.querySelector("cart-footer hide");
-     document.getElementById("cart-total").innerHTML =  `<p id="cart-total">Total: $${GrandTotal}</p>`;
-     }
-   
+    } catch (error) {
+      console.log(error);
+    }
     
-   }
+     }
+   
+   
+  function renderCartTotal (GrandTotal) {
+    let cart = getLocalStorage("so-cart");
+    if (cart.length > 0){
+      const cartTotal = document.querySelector("cart-footer hide");
+      document.getElementById("cart-total").innerHTML =  `<p id="cart-total">Total: $${GrandTotal}</p>`;
+    }
+  }
 
-   shoppingcart();
-   getTotal();
+shoppingcart();
+getTotal();
