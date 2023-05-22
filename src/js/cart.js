@@ -20,9 +20,10 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item,index) {
-  const newItem = `<li class="cart-card divider" data-id="${index}>
+  const newItem = `<li class="cart-card divider">
+  
   <a href="#" class="cart-card__image">
-  <span class="kill-product" >X ${index}</span>
+  <span class="kill-product" data-id="${item.Id}">X ${item.Id}</span>
     <img
       src="${item.Image}"
       alt="${item.Name}"
@@ -40,53 +41,26 @@ function cartItemTemplate(item,index) {
 }
 
  renderCartContents();
-// const killButtons = document.querySelectorAll('.kill-product');
-//   //  const dataId = document.querySelectorAll("[data-id]");
-//   //   dataId.forEach(id => console.log(id));
 
- 
-
-
-// // // // remove product to cart
-function removeProductFromCart(item) {
-
-  const cart = getLocalStorage("so-cart");
-  const htmlItems = cart.map((item) => cartItemTemplate(item));
-  var dataId = htmlItems[0];
-  dataId = document.getElementById("#data-id") ;
-  
-  
-
-  cart.splice(1, 1);
-console.log(productName)
-  setLocalStorage("so-cart", cart);
-
-  renderCartContents();
-}
-
-renderCartContents();
 // add listener to remove from Cart button
-// document
-//   .querySelector(".kill-product")
-//   .addEventListener("click", removeProductFromCart);
+const removeItem = document.querySelectorAll(".kill-product");
 
-
-  const killButtons = document.querySelectorAll('.kill-product');
-  let x = 0;
-  // killButtons.button.addEventListener('click', removeItem);
-  // function removeItem() {
-  //   const t = querySelectorAll("#data-id");
-  //   console.log(t)
-  
-
-
-// // Agregar un "event listener" para cada elemento
-killButtons.forEach(button => {
-  button.addEventListener('click', function() {
-    // Obtener el elemento padre del botón actual y eliminarlo
-   // let getDataVal = document.getElementById('kill-product').getAttribute('data-id')
-   const parentElement = this.parentElement;
-   console.log(id)
-   //parentElement.splice(index, 1);
+//remove Item from cart
+  removeItem.forEach(button => {
+    button.addEventListener('click', function(element) {
+    let cart = getLocalStorage("so-cart");
+    const  {id}  = element.target.dataset;
+      console.log(id);
+      console.log(cart.Id)
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].Id == id){
+          console.log("HOORY");
+          cart.splice(i, 1);
+          setLocalStorage("so-cart", cart);
+          console.log(i);
+          i--;
+        }
+      }
+      location.reload();
   });
 });
