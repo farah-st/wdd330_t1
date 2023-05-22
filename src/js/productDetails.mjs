@@ -1,35 +1,46 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, renderWithTemplate, setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 
 // Main function
 export default async function productDetails(productId) {
-    const product = await findProductById(productId);
-    renderProductDetails(product)
+    try {
+      const product = await findProductById(productId);
+      if (product === undefined) {
+        throw Error();
+      }
+      const productDetails = document.querySelector(".product-detail");
+      renderWithTemplate(productDetailsTemplate,productDetails,product);
+    } catch {
+      const productDetails = document.querySelector(".product-detail");
+      renderWithTemplate(productNotFoundTemplate,productDetails);
+    }
+    
 };
 
-// Fill the details for the current product in the HTML
-function renderProductDetails(product){
-    const productName = document.getElementById("productName");
-    const productNameWithoutBrand = document.getElementById("productNameWithoutBrand");
-    const productImage = document.getElementById("productImage");
-    const productFinalPrice = document.getElementById("productFinalPrice");
-    const productColorName = document.getElementById("productColorName");
-    const productDescriptionHtmlSimple = document.getElementById("productDescriptionHtmlSimple");
-    const addToCart = document.getElementById("addToCart");
-
-    productName.innerHTML = product.Name;
-    productNameWithoutBrand.innerHTML = product.Brand.Name;
-    productImage.src = product.Image;
-    productImage.alt = product.Name;
-    productFinalPrice.innerHTML = product.FinalPrice;
-    productColorName.innerHTML = product.Colors[0].ColorName;
-    productDescriptionHtmlSimple.innerHTML = product.DescriptionHtmlSimple;
-    addToCart.setAttribute("data-id", product.Id)
+function productDetailsTemplate(product){
+  return `
+          <h3 id="productName">${product.Name}</h3>
+          <h2 class="divider" id="productNameWithoutBrand">${product.Brand.Name}</h2>
+          <img id="productImage" class="divider" src="${product.Image}" alt="${product.Name}">
+          <p class="product-card__price" id="productFinalPrice">${product.FinalPrice}</p>
+          <p class="product__color" id="productColorName">${product.Colors[0].ColorName}</p>
+          <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
+          <div class="product-detail__add">
+            <button id="addToCart" data-id="">Add to Cart</button>
+          </div>
+          `
 };
 
-
-
-
+function productNotFoundTemplate(){
+  return `
+        <h2>Product not Found!</h2>
+        <p>The item you requested is not available
+        for purchase</p>
+        <a href="/">
+                <button>Return to Shop</button>
+        </a>
+          `
+}
 
 // add product to cart
 export function addProductToCart(product) {

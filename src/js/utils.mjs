@@ -74,15 +74,14 @@ export async function renderWithTemplate (templateFn,
     }
 }
 
- function loadTemplate(path) {
-    return async function () {
-  const response = await fetch(path);
-  if (response.ok) {
+function loadTemplate(path) {
+  return async function () {
+    const response = await fetch(path);
+    if (response.ok) {
     const html = await response.text();
     return html;
+    }
   }
-   }
-
 }
 
 export function loadHeaderFooter() {
