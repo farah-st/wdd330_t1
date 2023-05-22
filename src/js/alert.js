@@ -6,8 +6,8 @@
  
 //  alertMessage();
 
-
-fetch("alerts.json")
+export default async function displayAlert(){ //*
+await fetch("./json/alert.json") //*
   .then(response => response.json())
   .then(data => {
     // Loop through the data to create an alert for each item
@@ -16,10 +16,11 @@ fetch("alerts.json")
       const alert = document.createElement("div");
       alert.classList.add("alert");
       alert.textContent = item.message;
-      alert.style.backgroundColor = item.backgroundColor;
+      alert.style.backgroundColor = item.background; //*
       
       // Add the alert to the page
-      document.querySelector(".productList").appendChild(alert);
+      document.querySelector(".product-list").appendChild(alert); //*
     });
   });
 
+}
