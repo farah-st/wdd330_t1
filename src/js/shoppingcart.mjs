@@ -24,22 +24,37 @@ function cartItemTemplate(item) {
       <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">qty: <input type="number" id="quantityNum"></p>
+    <p class="cart-card__quantity">qty: <input type="number" className="quantityNum" name="quantityNum" value="1"></p>
     <p class="cart-card__price">$${item.FinalPrice}</p>
   </li>`;
   
     return newItem;
 };
 
-function quantityInCart(el) {
-  const {id} = el.target.dataset
-  const finalPrice = document.querySelector({FinalPrice});
-  console.log(finalPrice)
+const Quantity = document.getElementById("quantityNum");
+
+
+
+
+function quantityInCart(e) {
+    const {Name} = e.target.dataset
+     const value = Quantity
+    //  const finalPrice = document.querySelector({FinalPrice});
+     console.log(Name)
 }
 
+document.addEventListener("input", quantityInCart);
 
+// const Quantity = document.querySelectorAll(".quantityNum");
 
-
+// //remove Item from cart
+//   Quantity.forEach(Number => {
+//     Number.addEventListener('input', function(el) {
+//            const {id} = el.target.dataset
+//     //  const finalPrice = document.querySelector({FinalPrice});
+//      console.log(id)
+//     });
+//   });
 
 
 function cartEmptyTemplate() {
