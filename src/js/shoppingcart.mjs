@@ -24,12 +24,21 @@ function cartItemTemplate(item) {
       <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">qty: 1</p>
+    <p class="cart-card__quantity">qty: <input type="number" id="quantityNum"></p>
     <p class="cart-card__price">$${item.FinalPrice}</p>
   </li>`;
   
     return newItem;
 };
+
+function quantityInCart() {
+  
+}
+
+
+
+
+
 
 function cartEmptyTemplate() {
   return  `<section class="cart-empty-alert">
