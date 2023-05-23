@@ -31,8 +31,10 @@ function cartItemTemplate(item) {
     return newItem;
 };
 
-function quantityInCart() {
-  
+function quantityInCart(el) {
+  const {id} = el.target.dataset
+  const finalPrice = document.querySelector({FinalPrice});
+  console.log(finalPrice)
 }
 
 
@@ -77,6 +79,7 @@ function cartEmptyTemplate() {
       document.getElementById("cart-total").innerHTML =  `<p id="cart-total">Total: $${GrandTotal}</p>`;
     }
   }
+
 
 shoppingcart();
 getTotal();
