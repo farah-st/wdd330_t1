@@ -40,6 +40,37 @@ export function updateCartSuperscript (){
   
 }
 
+// animation for backpack icon
+export function backpackAnimation() {
+  let backpack = document.getElementsByClassName("backpack");
+
+  let interval = setInterval(myInterval, 250);
+
+  let i = 0;
+  let pos = 10;
+  function myInterval() {
+    backpack[0].style.backgroundColor =
+      backpack[0].style.backgroundColor == "green" ? "white" : "green";
+    backpack[0].style.position = "absolute";
+    backpack[0].style.top = pos + "px";
+    backpack[0].style.right = pos + "px";
+    pos += 25;
+    i++;
+
+    if (i == 18) {
+      backpack[0].style.position = "relative";
+      clearInterval(interval);
+      backpack[0].style.backgroundColor = "white";
+      backpack[0].style.top = 0 + "px";
+      backpack[0].style.right = 0 + "px";
+
+      updateCartSuperscript();
+    }
+  }
+}
+
+
+
 export function renderListWithTemplate (templateFn, parentElement, list, position = "afterbegin", clear = true, productToRender = 4){
 // Renders products using a template
 

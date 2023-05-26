@@ -1,5 +1,6 @@
 import { getLocalStorage, renderWithTemplate, setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
+import { backpackAnimation, getParam } from "./utils.mjs";
 
 // Main function
 export default async function productDetails(productId) {
@@ -9,7 +10,9 @@ export default async function productDetails(productId) {
         throw Error();
       }
       const productDetails = document.querySelector(".product-detail");
-      renderWithTemplate(productDetailsTemplate,productDetails,product);
+      await renderWithTemplate(productDetailsTemplate,productDetails,product);
+      // add listener to Add to Cart button
+      document.getElementById("addToCart").addEventListener("click", addToCartHandler);
     } catch {
       const productDetails = document.querySelector(".product-detail");
       renderWithTemplate(productNotFoundTemplate,productDetails);
@@ -54,3 +57,12 @@ export function addProductToCart(product) {
     cart.push(product);
     setLocalStorage("so-cart", cart);
   }
+
+  // add to cart button event handler
+async function addToCartHandler() {
+  const productID = getParam("product");
+  const product = await findProductById(productID);
+  addProductToCart(product);
+  backpackAnimation();
+}
+
