@@ -6,7 +6,9 @@ export default async function shoppingcart() {
     if (cartItems.length === 0) {throw Error}
     const htmlItems = document.querySelector(".product-list");
     await renderListWithTemplate(cartItemTemplate,htmlItems,cartItems);
+    changeQuantity();
     killProductEvent();
+    
 
   } catch (error) {
     const emptyCartAlert = cartEmptyTemplate();
@@ -28,7 +30,7 @@ function cartItemTemplate(item) {
       <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">qty: ${item.quantity}</p>
+    <p class="cart-card__quantity"><input type="number" className="quantityCart" name="quantityCart" value="${item.quantity}"> qty: ${item.quantity}</p>
     <p class="cart-card__price">$${calculateFinalPrice(item)}</p>
   </li>`;
 };
@@ -76,7 +78,6 @@ function renderCartTotal (GrandTotal) {
 
 function killProductEvent(){
   const removeItem = document.querySelectorAll(".kill-product");
-  
   //remove Item from cart
   removeItem.forEach(button => {
   button.addEventListener('click', function(element) {
@@ -99,7 +100,19 @@ function killProductEvent(){
   
 }
 
-// // add listener to remove from Cart button
+function changeQuantity() {
+  const Quantity = document.querySelectorAll(".quantityCart");
+  
+    Quantity.forEach(input => {
+      input.addEventListener('click', function(el) {
+        const {quantity} = el.target.dataset;
+        console.log("R")
+      console.log(quantity);
+      console.log(Quantity);
+      });
+  });
+}
+
 
 
 
