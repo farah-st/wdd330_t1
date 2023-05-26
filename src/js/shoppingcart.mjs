@@ -1,20 +1,24 @@
-import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, renderListWithTemplate } from "./utils.mjs";
 
-export default function shoppingcart() {
+export default async function shoppingcart() {
   try {
     const cartItems = getLocalStorage("so-cart");
+    if (cartItems.length === 0) {throw Error}
     const htmlItems = document.querySelector(".product-list");
-    renderListWithTemplate(cartItemTemplate,htmlItems,cartItems);
+    await renderListWithTemplate(cartItemTemplate,htmlItems,cartItems);
+    killProductEvent();
+
   } catch (error) {
     const emptyCartAlert = cartEmptyTemplate();
     document.querySelector(".products").innerHTML = emptyCartAlert;
 
-  } 
+  }
 }
 
 function cartItemTemplate(item) {
     return `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
+     <span class="kill-product" data-id="${item.Id}">X</span>
       <img
         src="${item.Images.PrimarySmall}"
         alt="${item.Name}"
@@ -28,6 +32,8 @@ function cartItemTemplate(item) {
     <p class="cart-card__price">$${calculateFinalPrice(item)}</p>
   </li>`;
 };
+
+
 
 function calculateFinalPrice(item){
   let FinalPrice = item.FinalPrice * item.quantity;
@@ -67,6 +73,36 @@ function renderCartTotal (GrandTotal) {
     document.getElementById("cart-total").innerHTML =  `<p id="cart-total">Total: $${GrandTotal}</p>`;
   }
 }
+
+function killProductEvent(){
+  const removeItem = document.querySelectorAll(".kill-product");
+  
+  //remove Item from cart
+  removeItem.forEach(button => {
+  button.addEventListener('click', function(element) {
+    let cart = getLocalStorage("so-cart");
+    const  {id}  = element.target.dataset;
+      console.log(id);
+      console.log(cart.Id)
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].Id == id){
+          cart.splice(i, 1);
+          setLocalStorage("so-cart", cart);
+          i--;
+        }
+      }
+      location.reload();
+      shoppingcart();
+    });
+  });
+
+  
+}
+
+// // add listener to remove from Cart button
+
+
+
 
 shoppingcart();
 getTotal();
