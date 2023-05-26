@@ -5,4 +5,3 @@ const categoryId = getParam("category");
 
 productList(".product-list", categoryId, 4);
 loadHeaderFooter();
-updateCartSuperscript();

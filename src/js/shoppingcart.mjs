@@ -13,10 +13,10 @@ export default function shoppingcart() {
 }
 
 function cartItemTemplate(item) {
-    const newItem = `<li class="cart-card divider">
+    return `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
       <img
-        src="${item.Image}"
+        src="${item.Images.PrimarySmall}"
         alt="${item.Name}"
       />
     </a>
@@ -28,7 +28,6 @@ function cartItemTemplate(item) {
     <p class="cart-card__price">$${item.FinalPrice}</p>
   </li>`;
   
-    return newItem;
 };
 
 function cartEmptyTemplate() {
@@ -50,8 +49,6 @@ function cartEmptyTemplate() {
          for(let t = 0; t < cart.length; t++){
        GrandTotal += cart[t].FinalPrice;
      }
-         // const cartTotal = document.getElementById("cart-total");
-         // cartTotal.innerHTML = GrandTotal;
          renderCartTotal(GrandTotal);
    return GrandTotal;
     } catch (error) {
@@ -64,7 +61,6 @@ function cartEmptyTemplate() {
   function renderCartTotal (GrandTotal) {
     let cart = getLocalStorage("so-cart");
     if (cart.length > 0){
-      const cartTotal = document.querySelector("cart-footer hide");
       document.getElementById("cart-total").innerHTML =  `<p id="cart-total">Total: $${GrandTotal}</p>`;
     }
   }

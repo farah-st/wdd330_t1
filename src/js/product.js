@@ -5,4 +5,3 @@ import productDetails from "./productDetails.mjs";
 const productID = getParam("product");
 productDetails(productID);
 loadHeaderFooter();
-updateCartSuperscript();

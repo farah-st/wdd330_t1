@@ -32,12 +32,11 @@ export function getParam(param) {
 export function updateCartSuperscript (){
   try{
     const cartSuperscript = document.getElementById("cart-superscript");
-  const cart = getLocalStorage("so-cart");
-  cartSuperscript.innerHTML = cart.length;
+    const cart = getLocalStorage("so-cart");
+    cartSuperscript.innerHTML = cart.length;
   } catch (error) {
-    console.log(error);
+      console.log(error);
   }
-  
 }
 
 // animation for backpack icon
