@@ -1,10 +1,12 @@
-import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, renderListWithTemplate } from "./utils.mjs";
 
-export default function shoppingcart() {
+export default async function shoppingcart() {
   try {
     const cartItems = getLocalStorage("so-cart");
     const htmlItems = document.querySelector(".product-list");
-    renderListWithTemplate(cartItemTemplate,htmlItems,cartItems);
+    await renderListWithTemplate(cartItemTemplate,htmlItems,cartItems);
+    killProductEvent();
+    
   } catch (error) {
     const emptyCartAlert = cartEmptyTemplate();
     document.querySelector(".products").innerHTML = emptyCartAlert;
@@ -71,13 +73,12 @@ function renderCartTotal (GrandTotal) {
   }
 }
 
-
-// add listener to remove from Cart button
-const removeItem = document.querySelectorAll(".kill-product");
-
-//remove Item from cart
+function killProductEvent(){
+  const removeItem = document.querySelectorAll(".kill-product");
+  
+  //remove Item from cart
   removeItem.forEach(button => {
-    button.addEventListener('click', function(element) {
+  button.addEventListener('click', function(element) {
     let cart = getLocalStorage("so-cart");
     const  {id}  = element.target.dataset;
       console.log(id);
@@ -90,8 +91,15 @@ const removeItem = document.querySelectorAll(".kill-product");
         }
       }
       location.reload();
+      shoppingcart();
+    });
   });
-});
+
+  
+}
+
+// // add listener to remove from Cart button
+
 
 
 
