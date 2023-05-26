@@ -31,28 +31,6 @@ function cartItemTemplate(item) {
 };
 
 
-// add listener to remove from Cart button
-const removeItem = document.querySelectorAll(".kill-product");
-
-//remove Item from cart
-  removeItem.forEach(button => {
-    button.addEventListener('click', function(element) {
-    let cart = getLocalStorage("so-cart");
-    const  {id}  = element.target.dataset;
-      console.log(id);
-      console.log(cart.Id)
-      for (let i = 0; i < cart.length; i++) {
-        if (cart[i].Id == id){
-          cart.splice(i, 1);
-          setLocalStorage("so-cart", cart);
-          i--;
-        }
-      }
-      location.reload();
-  });
-});
-
-
 
 function calculateFinalPrice(item){
   let FinalPrice = item.FinalPrice * item.quantity;
@@ -92,6 +70,30 @@ function renderCartTotal (GrandTotal) {
     document.getElementById("cart-total").innerHTML =  `<p id="cart-total">Total: $${GrandTotal}</p>`;
   }
 }
+
+
+// add listener to remove from Cart button
+const removeItem = document.querySelectorAll(".kill-product");
+
+//remove Item from cart
+  removeItem.forEach(button => {
+    button.addEventListener('click', function(element) {
+    let cart = getLocalStorage("so-cart");
+    const  {id}  = element.target.dataset;
+      console.log(id);
+      console.log(cart.Id)
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].Id == id){
+          cart.splice(i, 1);
+          setLocalStorage("so-cart", cart);
+          i--;
+        }
+      }
+      location.reload();
+  });
+});
+
+
 
 shoppingcart();
 getTotal();
