@@ -3,15 +3,16 @@ import { getLocalStorage, setLocalStorage, renderListWithTemplate } from "./util
 export default async function shoppingcart() {
   try {
     const cartItems = getLocalStorage("so-cart");
+    if (cartItems.length === 0) {throw Error}
     const htmlItems = document.querySelector(".product-list");
     await renderListWithTemplate(cartItemTemplate,htmlItems,cartItems);
     killProductEvent();
-    
+
   } catch (error) {
     const emptyCartAlert = cartEmptyTemplate();
     document.querySelector(".products").innerHTML = emptyCartAlert;
 
-  } 
+  }
 }
 
 function cartItemTemplate(item) {
