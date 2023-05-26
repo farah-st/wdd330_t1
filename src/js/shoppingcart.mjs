@@ -24,14 +24,14 @@ function cartItemTemplate(item) {
       <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">qty: <input type="number" className="quantityNum" name="quantityNum" value="5" data-id="${item.Id}" data-number="></p>
+    <p class="cart-card__quantity">qty: <input type="number" id="quantityNum" name="quantityNum" value="1" data-id="${item.Id}" data-number="></p>
     <p class="cart-card__price">$${item.FinalPrice}</p>
   </li>`;
   
     return newItem;
 };
 
-const Quantity = document.getElementBycl("quantityNum");
+const Quantity = document.getElementById("quantityNum");
 
 
 
