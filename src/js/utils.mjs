@@ -58,10 +58,10 @@ export function backpackAnimation() {
     backpack[0].style.position = "absolute";
     backpack[0].style.top = pos + "px";
     backpack[0].style.right = pos + "px";
-    pos += 25;
+    pos += 150;
     i++;
 
-    if (i == 18) {
+    if (i == 5) {
       backpack[0].style.position = "relative";
       clearInterval(interval);
       backpack[0].style.backgroundColor = "white";
