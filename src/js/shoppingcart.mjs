@@ -24,11 +24,15 @@ function cartItemTemplate(item) {
       <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">qty: 1</p>
-    <p class="cart-card__price">$${item.FinalPrice}</p>
+    <p class="cart-card__quantity">qty: ${item.quantity}</p>
+    <p class="cart-card__price">$${calculateFinalPrice(item)}</p>
   </li>`;
-  
 };
+
+function calculateFinalPrice(item){
+  let FinalPrice = item.FinalPrice * item.quantity;
+  return FinalPrice.toFixed(2);
+}
 
 function cartEmptyTemplate() {
   return  `<section class="cart-empty-alert">
@@ -42,28 +46,27 @@ function cartEmptyTemplate() {
           </section>`
 };
 
-  function getTotal() {
-    try {
-      let cart = getLocalStorage("so-cart");
-    let GrandTotal = 0;
-         for(let t = 0; t < cart.length; t++){
-       GrandTotal += cart[t].FinalPrice;
-     }
-         renderCartTotal(GrandTotal);
-   return GrandTotal;
-    } catch (error) {
-      console.log(error);
-    }
-    
-     }
-   
-   
-  function renderCartTotal (GrandTotal) {
+function getTotal() {
+  try {
     let cart = getLocalStorage("so-cart");
-    if (cart.length > 0){
-      document.getElementById("cart-total").innerHTML =  `<p id="cart-total">Total: $${GrandTotal}</p>`;
+    if (cart === null) {return};
+    let GrandTotal = 0;
+    for(let t = 0; t < cart.length; t++){
+      GrandTotal += (cart[t].FinalPrice * cart[t].quantity);
     }
+    renderCartTotal(GrandTotal.toFixed(2));
+  } catch (error) {
+    console.log(error);
   }
+  }
+  
+  
+function renderCartTotal (GrandTotal) {
+  let cart = getLocalStorage("so-cart");
+  if (cart.length > 0){
+    document.getElementById("cart-total").innerHTML =  `<p id="cart-total">Total: $${GrandTotal}</p>`;
+  }
+}
 
 shoppingcart();
 getTotal();
