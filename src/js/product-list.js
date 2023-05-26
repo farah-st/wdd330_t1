@@ -1,6 +1,8 @@
-import { updateCartSuperscript, loadHeaderFooter } from "./utils.mjs";
+import { updateCartSuperscript, loadHeaderFooter, getParam } from "./utils.mjs";
 import productList from "./productList.mjs";
 
-productList(".product-list", "tents", 4);
+const categoryId = getParam("category");
+
+productList(".product-list", categoryId, 4);
 loadHeaderFooter();
 updateCartSuperscript();
