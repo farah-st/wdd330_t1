@@ -15,6 +15,7 @@ export default function shoppingcart() {
 function cartItemTemplate(item) {
     return `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
+     <span class="kill-product" data-id="${item.Id}">X</span>
       <img
         src="${item.Images.PrimarySmall}"
         alt="${item.Name}"
@@ -28,6 +29,30 @@ function cartItemTemplate(item) {
     <p class="cart-card__price">$${calculateFinalPrice(item)}</p>
   </li>`;
 };
+
+
+// add listener to remove from Cart button
+const removeItem = document.querySelectorAll(".kill-product");
+
+//remove Item from cart
+  removeItem.forEach(button => {
+    button.addEventListener('click', function(element) {
+    let cart = getLocalStorage("so-cart");
+    const  {id}  = element.target.dataset;
+      console.log(id);
+      console.log(cart.Id)
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].Id == id){
+          cart.splice(i, 1);
+          setLocalStorage("so-cart", cart);
+          i--;
+        }
+      }
+      location.reload();
+  });
+});
+
+
 
 function calculateFinalPrice(item){
   let FinalPrice = item.FinalPrice * item.quantity;
