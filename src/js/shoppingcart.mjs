@@ -1,14 +1,13 @@
 import { getLocalStorage, setLocalStorage, renderListWithTemplate } from "./utils.mjs";
 
 export default async function shoppingcart() {
-  try {
+ try {
     const cartItems = getLocalStorage("so-cart");
     if (cartItems.length === 0) {throw Error}
     const htmlItems = document.querySelector(".product-list");
     await renderListWithTemplate(cartItemTemplate,htmlItems,cartItems);
-    changeQuantity();
     killProductEvent();
-    
+     changeQuantity();
 
   } catch (error) {
     const emptyCartAlert = cartEmptyTemplate();
@@ -30,12 +29,11 @@ function cartItemTemplate(item) {
       <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity"><input type="number" className="quantityCart" name="quantityCart" value="${item.quantity}"> qty: ${item.quantity}</p>
+    <p class="cart-card__quantity">
+    <input type="number" class="quantityCart" name="quantityCart" data-id="${item.Id}" data-number="${item.quantity}" value="${item.quantity}"> qty: ${item.quantity}</p>
     <p class="cart-card__price">$${calculateFinalPrice(item)}</p>
   </li>`;
 };
-
-
 
 function calculateFinalPrice(item){
   let FinalPrice = item.FinalPrice * item.quantity;
@@ -78,6 +76,7 @@ function renderCartTotal (GrandTotal) {
 
 function killProductEvent(){
   const removeItem = document.querySelectorAll(".kill-product");
+
   //remove Item from cart
   removeItem.forEach(button => {
   button.addEventListener('click', function(element) {
@@ -102,15 +101,34 @@ function killProductEvent(){
 
 function changeQuantity() {
   const Quantity = document.querySelectorAll(".quantityCart");
+
+      let cart = getLocalStorage("so-cart");
+  const input = document.querySelector("input");
+  const log = document.getElementById("value");
   
-    Quantity.forEach(input => {
-      input.addEventListener('click', function(el) {
-        const {quantity} = el.target.dataset;
-        console.log("R")
-      console.log(quantity);
-      console.log(Quantity);
-      });
-  });
+  Quantity.forEach(input => {
+      input.addEventListener('change', function(element) {
+        element.preventDefault();
+              const {id} = element.target.dataset;
+              console.log(id)
+        for(let i = 0; i < cart.length; i++){
+          
+          
+       //   console.log(id)
+     // console.log(Quantity[i].value, cart[i].Id);
+
+  
+
+        }
+
+
+
+
+
+      }); 
+    });
+
+
 }
 
 
