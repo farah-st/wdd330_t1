@@ -110,10 +110,21 @@ function changeQuantity() {
       input.addEventListener('change', function(element) {
         element.preventDefault();
               const {id} = element.target.dataset;
-              console.log(id)
+              const {number} = element.target.dataset;
+             //console.log(id)
         for(let i = 0; i < cart.length; i++){
-          
-          
+          if (id == cart[i].Id) {
+           console.log(id, Quantity[i].value)
+           
+ //CHANGE JSON FILE TO NEW NUMBER HERE
+
+          //  let quantityNum = number;
+          //  quantityNum = Quantity[i].value;
+          //  console.log(quantityNum);
+
+          }
+
+
        //   console.log(id)
      // console.log(Quantity[i].value, cart[i].Id);
 
