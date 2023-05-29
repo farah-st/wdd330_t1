@@ -3,9 +3,6 @@ import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product){
     // creates a template to join into HTML document
-
-
-
     return `<li class="product-card">
                 <a href="../product_pages/index.html?product=${product.Id}">
                     <img src="${product.Images.PrimaryMedium}" alt="${product.NameWithoutBrand}">
@@ -45,42 +42,42 @@ export default async function productList(selector, category){
     // render out the product list to the element
     renderListWithTemplate(productCardTemplate, element, products);
     document.querySelector(".title").innerHTML = category;
+
+    function renderProductList() {
+        const renderList = document.querySelector(".product-list");
+        renderList.innerHTML = "";
+    
+        products.forEach(product => {
+          const productElement = document.createElement("div");
+          productElement.textContent = `${product.name} - $${product.price.toFixed(2)}`;
+          productList.appendChild(productElement);
+        });
+      }
+    
+      // Function to sort products by name
+      function sortProductsByName() {
+        products.sort((a, b) => a.name.localeCompare(b.name));
+        renderProductList();
+      }
+    
+      // Function to sort products by price
+      function sortProductsByPrice() {
+        products.sort((a, b) => a.price - b.price);
+        renderProductList();
+      }
+    
+      // Event listeners for sorting buttons
+      const sortByNameButton = document.getElementById("sort-by-name");
+      sortByNameButton.addEventListener("click", sortProductsByName);
+    
+      const sortByPriceButton = document.getElementById("sort-by-price");
+      sortByPriceButton.addEventListener("click", sortProductsByPrice);
+    
+      // Initial rendering of product list
+    //   renderProductList();
+
 }
 
-export async function renderProductList(category) {
-  const products = await getData(category);
-  const renderProduct = document.getElementById("product-list");
-  renderProduct.innerHTML = "";
-  products.forEach(product => {
-    const productElement = document.createElement("div");
-    productElement.textContent = `${product.name} - $${product.price.toFixed(2)}`;
-    productList.appendChild(productElement);
-  });
-}
 
-// Function to sort products by name
-
-export async function sortProductsByName(category) {
-  const products = await getData(category);
-  products.sort((a, b) => a.name.localeCompare(b.name));
-  renderProductList();
-  // console.log(products);
-}
-
-// Function to sort products by price
-
-export async function sortProductsByPrice(category) {
-  const products = await getData(category);
-  products.sort((a, b) => a.price - b.price);
-  renderProductList();
-}
-
-// Event listeners for sorting buttons
-const sortByNameButton = document.getElementById("sort-by-name");
-sortByNameButton.addEventListener("click", sortProductsByName);
-
-const sortByPriceButton = document.getElementById("sort-by-price");
-sortByPriceButton.addEventListener("click", sortProductsByPrice);
-
-// Initial rendering of product list
-// renderProductList();
+  
+  
