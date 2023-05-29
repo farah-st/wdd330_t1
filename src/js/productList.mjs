@@ -47,3 +47,40 @@ export default async function productList(selector, category){
     document.querySelector(".title").innerHTML = category;
 }
 
+export async function renderProductList(category) {
+  const products = await getData(category);
+  const renderProduct = document.getElementById("product-list");
+  renderProduct.innerHTML = "";
+  products.forEach(product => {
+    const productElement = document.createElement("div");
+    productElement.textContent = `${product.name} - $${product.price.toFixed(2)}`;
+    productList.appendChild(productElement);
+  });
+}
+
+// Function to sort products by name
+
+export async function sortProductsByName(category) {
+  const products = await getData(category);
+  products.sort((a, b) => a.name.localeCompare(b.name));
+  renderProductList();
+  // console.log(products);
+}
+
+// Function to sort products by price
+
+export async function sortProductsByPrice(category) {
+  const products = await getData(category);
+  products.sort((a, b) => a.price - b.price);
+  renderProductList();
+}
+
+// Event listeners for sorting buttons
+const sortByNameButton = document.getElementById("sort-by-name");
+sortByNameButton.addEventListener("click", sortProductsByName);
+
+const sortByPriceButton = document.getElementById("sort-by-price");
+sortByPriceButton.addEventListener("click", sortProductsByPrice);
+
+// Initial rendering of product list
+// renderProductList();
