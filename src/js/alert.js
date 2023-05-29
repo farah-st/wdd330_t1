@@ -23,7 +23,7 @@
 //     console.error("Error fetching alerts:", error);
 //   });
 
-
+// second try
 // const baseUrl = "json/alert.json";
 // export default class Alert {
 //   constructor(alert, background, color) {
