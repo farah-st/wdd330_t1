@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, renderListWithTemplate } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, renderListWithTemplate, updateCartSuperscript } from "./utils.mjs";
 
 export default async function shoppingcart() {
  try {
@@ -7,7 +7,7 @@ export default async function shoppingcart() {
     const htmlItems = document.querySelector(".product-list");
     await renderListWithTemplate(cartItemTemplate,htmlItems,cartItems);
     killProductEvent();
-     changeQuantity();
+    changeQuantity();
 
   } catch (error) {
     const emptyCartAlert = cartEmptyTemplate();
@@ -93,6 +93,7 @@ function killProductEvent(){
       }
       location.reload();
       shoppingcart();
+      getTotal();
     });
   });
 
@@ -103,47 +104,34 @@ function changeQuantity() {
   const Quantity = document.querySelectorAll(".quantityCart");
 
       let cart = getLocalStorage("so-cart");
-  const input = document.querySelector("input");
-  const log = document.getElementById("value");
   
   Quantity.forEach(input => {
       input.addEventListener('change', function(element) {
         element.preventDefault();
               const {id} = element.target.dataset;
               const {number} = element.target.dataset;
-             //console.log(id)
+
         for(let i = 0; i < cart.length; i++){
           if (id == cart[i].Id) {
-           console.log(id, Quantity[i].value)
-           
- //CHANGE JSON FILE TO NEW NUMBER HERE
 
-          //  let quantityNum = number;
-          //  quantityNum = Quantity[i].value;
-          //  console.log(quantityNum);
+              if (Quantity[i].value > 0) {
+                 console.log(id, Quantity[i].value);
+                 cart[i].quantity = Quantity[i].value;
+              }
+              else {
+                cart.splice(i, 1);
+              }
 
+            setLocalStorage("so-cart", cart);
+            shoppingcart();
+            updateCartSuperscript();
+            getTotal();
           }
-
-
-       //   console.log(id)
-     // console.log(Quantity[i].value, cart[i].Id);
-
-  
-
         }
-
-
-
-
-
       }); 
     });
 
-
 }
-
-
-
 
 
 shoppingcart();
