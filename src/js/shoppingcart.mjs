@@ -99,8 +99,6 @@ function killProductEvent(){
   
 }
 
-// // add listener to remove from Cart button
-
 
 
 
