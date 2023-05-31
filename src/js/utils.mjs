@@ -73,6 +73,17 @@ export function backpackAnimation() {
   }
 }
 
+export function addBreadcrumbs() {
+  
+  const breadCr = document.getElementById("breadcrumbs");
+  const breadCrumbsParagraph = document.createElement("p");
+  const node = document.createTextNode("Home");
+  breadCrumbsParagraph.appendChild(node);
+    console.log(breadCr)
+  breadCr.appendChild(breadCrumbsParagraph);
+
+}
+
 
 
 export function renderListWithTemplate (templateFn, parentElement, list, position = "afterbegin", clear = true, productToRender = 4){
@@ -121,8 +132,6 @@ function loadTemplate(path) {
 
 export function loadHeaderFooter() {
 
-
-  
    const headerTemplateFn = loadTemplate("/partials/header.html");
    
    const footerTemplateFn = loadTemplate("/partials/footer.html");
@@ -131,14 +140,6 @@ export function loadHeaderFooter() {
    const footerE1 = document.querySelector("footer");
    renderWithTemplate(headerTemplateFn, headerE1, null, updateCartSuperscript);
    renderWithTemplate(footerTemplateFn, footerE1);
-
-  
- // const breadCr = document.getElementById("breadcrumbs");
-  const breadCrumbsParagraph = document.createElement("p");
-  const node = document.createTextNode("Home");
-  breadCrumbsParagraph.appendChild(node);
-
-  headerE1.appendChild(breadCrumbsParagraph); 
 
 }
 
