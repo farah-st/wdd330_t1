@@ -74,10 +74,12 @@ export function backpackAnimation() {
 }
 
 export function addBreadcrumbs() {
-  
+
+
+
   const breadCr = document.getElementById("breadcrumbs");
   const breadCrumbsParagraph = document.createElement("p");
-  const node = document.createTextNode("Home");
+  const node = document.createTextNode("sfd;lncld;nearj;i");
   breadCrumbsParagraph.appendChild(node);
     console.log(breadCr)
   breadCr.appendChild(breadCrumbsParagraph);
@@ -141,6 +143,7 @@ export function loadHeaderFooter() {
    renderWithTemplate(headerTemplateFn, headerE1, null, updateCartSuperscript);
    renderWithTemplate(footerTemplateFn, footerE1);
 
+   addBreadcrumbs();
 }
 
   
