@@ -27,7 +27,6 @@ const checkoutProcess = {
     }
     this.itemTotal = GrandTotal;
     this.quantityTotal = quantityTotal;
-    
   },
   calculateOrdertotal: function() {
     // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
@@ -48,10 +47,21 @@ const checkoutProcess = {
   },
   displayOrderTotals: function() {
     // once the totals are all calculated display them in the order summary page
+    let itemTotal = document.getElementById("itemTotal");
+    let shipping = document.getElementById("shipping");
+    let tax = document.getElementById("tax");
+    let orderTotal = document.getElementById("orderTotal");
+    console.log(tax)
+    
     this.outputSelector.itemTotal.value = this.itemTotal;
     this.outputSelector.shipping.value = this.shipping;
     this.outputSelector.tax.value = this.tax;
     this.outputSelector.orderTotal.value = this.orderTotal;
+
+    itemTotal = this.itemTotal;
+    shipping = this.shipping;
+    tax = this.tax;
+    orderTotal = this.orderTotal;
 
   },
 
@@ -66,6 +76,16 @@ const checkoutProcess = {
   }
 
 
+
+  function formDataToJSON(formElement) {
+    const formData = new formData(formElement),
+      convertedJSON = {};
+
+    formData.forEach(function(value, key) {
+      convertedJSON[key] = value;
+    }); 
+    return convertedJSON;
+  }
 
 
 export default checkoutProcess;
