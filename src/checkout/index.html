@@ -8,7 +8,9 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <script src="../js/checkout.js" type="module"></script>
   </head>
 
   <body>
@@ -39,25 +41,29 @@
           <fieldset>
             <legend>Payment</legend>
             <label for="cardNumber">Card number:</label>
-          <input type="number" name="cardNumber" class="cardNumber" value="123412341234" required>
+          <input type="number" name="cardNumber" class="cardNumber" value="123412341234" maxlength="16" required>
           <label for="expiration">Expiration:</label>
           <input type="month" name="expiration" class="expiration" min="2023-06" value="2023-06" required>
           <label for="code">Security Code:</label>
-          <input type="number" name="code" class="code" value="123" required>
+          <input type="number" name="code" class="code" value="123" maxlength="3" required>
         </fieldset>
 
         <label>
           <legend>Order Summary</legend>
           <label for="itemTotal">Item Subtotal</label>
-          <input type="text" name="itemTotal">
+          <p id="itemTotal"></p>
+
           <label for="shipping">Shipping Estimate</label>
-          <input type="text" name="shipping">
+          <p id="shipping"></p>
+
           <label for="tax">Tax</label>
-          <input type="text" name="tax">
+          <p id="tax"></p>
+          
           <label for="orderTotal">Order Total</label>
-          <input type="text" name="orderTotal">
+          <p id="orderTotal"></p>
+
         </label>
-        <button id="Checkout">Checkout</button>
+        <button type="submit" id="checkout">Checkout</button>
         </form>
 
       </section>
