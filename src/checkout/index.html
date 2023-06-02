@@ -23,35 +23,39 @@
 
             <legend>Shipping</legend>
           <label for="fname">First Name:</label>
-          <input type="text" name="fname" class="fname" required>
+          <input type="text" name="fname" class="fname" value="john" required>
           <label for="lname">Last Name:</label>
-          <input type="text" name="lname" class="lname" required>
+          <input type="text" name="lname" class="lname" value="john" required>
           <label for="street">Street:</label>
-          <input type="text" name="street" class="street" required>
+          <input type="text" name="street" class="street" value="john" required>
           <label for="city">City:</label>
-          <input type="text" name="city" class="city" required>
+          <input type="text" name="city" class="city" value="johnson" required>
           <label for="state">State:</label>
-          <input type="text" name="state" class="state" required> 
+          <input type="text" name="state" class="state" value="jn" required> 
           <label for="zip">Zip:</label>
-          <input type="number" name="zip" class="zip" required>
+          <input type="number" name="zip" class="zip" value="12345" required>
           </fieldset>
 
           <fieldset>
             <legend>Payment</legend>
             <label for="cardNumber">Card number:</label>
-          <input type="number" name="cardNumber" class="cardNumber" required>
+          <input type="number" name="cardNumber" class="cardNumber" value="123412341234" required>
           <label for="expiration">Expiration:</label>
-          <input type="number" name="expiration" class="expiration" required>
+          <input type="month" name="expiration" class="expiration" min="2023-06" value="2023-06" required>
           <label for="code">Security Code:</label>
-          <input type="number" name="code" class="code" required>
+          <input type="number" name="code" class="code" value="123" required>
         </fieldset>
 
         <label>
           <legend>Order Summary</legend>
-          <label for="orderTotal">Item Subtotal</label>
+          <label for="itemTotal">Item Subtotal</label>
+          <input type="text" name="itemTotal">
           <label for="shipping">Shipping Estimate</label>
+          <input type="text" name="shipping">
           <label for="tax">Tax</label>
-          <label>Order Total</label>
+          <input type="text" name="tax">
+          <label for="orderTotal">Order Total</label>
+          <input type="text" name="orderTotal">
         </label>
         <button id="Checkout">Checkout</button>
         </form>

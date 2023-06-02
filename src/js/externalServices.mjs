@@ -7,12 +7,7 @@ function convertToJson(res) {
   }
 }
 
-// export async function getData(category = "tents") {
-//   return fetch(`../json/${category}.json`)
-//     .then(convertToJson)
-//     .then((data) => data);
-// }
-export async function getData(category) {
+export async function getProductsByCategory(category) {
   const response = await fetch(baseURL + `products/search/${category}`);
   const data = await convertToJson(response);
   return data.Result;
@@ -21,7 +16,5 @@ export async function getData(category) {
 export async function findProductById(id) {
   const response = await fetch(baseURL + `product/${id}`);
   const products = await convertToJson(response);
-  // const products = await getData();
-  // return products.find((item) => item.Id === id);
    return products.Result;
 }
