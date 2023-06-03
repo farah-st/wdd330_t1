@@ -18,54 +18,66 @@
     <header class="divider"></header>
     <main>
       <section class="products">
-          <h2>Review & Place your Order</h2>
-          <form class="grid">
-            <div class = "form">
-              <fieldset>
-                <legend>Shipping</legend>
-                <label for="fname">First Name:</label>
-                <input name="fname" class="fname" value="john" required>
-                <label for="lname">Last Name:</label>
-                <input name="lname" class="lname" value="john" required>
-                <label for="street">Street:</label>
-                <input name="street" class="street" value="john" required>
-                <label for="city">City:</label>
-                <input name="city" class="city" value="johnson" required>
-                <label for="state">State:</label>
-                <input name="state" class="state" value="jn" required> 
-                <label for="zip">Zip:</label>
-                <input name="zip" class="zip" value="12345" required>
-              </fieldset>
-            </div>
+        <h2>Review & Place your Order</h2>
+        <form name="checkout" class="grid">
+          <div class="form">
+            <fieldset>
+              <legend>Shipping</legend>
+              <label for="fname">First Name:</label>
+              <input name="fname" class="fname" required />
+              <label for="lname">Last Name:</label>
+              <input name="lname" class="lname" required />
+              <label for="street">Street:</label>
+              <input name="street" class="street" required />
+              <label for="city">City:</label>
+              <input name="city" class="city" required />
+              <label for="state">State:</label>
+              <input name="state" class="state" required />
+              <label for="zip">Zip:</label>
+              <input name="zip" type="number" class="zip" id="zip" required />
+            </fieldset>
+          </div>
 
-            <div class = "form2">
-              <fieldset>
-                <legend>Payment</legend>
-                <label for="cardNumber">Card number:</label>
-                <input name="cardNumber" class="cardNumber" value="123412341234" maxlength="16" required>
-                <label for="expiration">Expiration:</label>
-                <input name="expiration" class="expiration" min="2023-06" value="06/23" required>
-                <label for="code">Security Code:</label>
-                <input name="code" class="code" value="123" maxlength="3" required>
-              </fieldset>
-            </div>
+          <div class="form2">
+            <fieldset>
+              <legend>Payment</legend>
+              <label for="cardNumber">Card number:</label>
+              <input
+                name="cardNumber"
+                type="number"
+                class="cardNumber"
+                size="16"
+                required
+              />
+              <label for="expiration">Expiration:</label>
+              <input
+                name="expiration"
+                class="expiration"
+                min="2023-06"
+                required
+              />
+              <label for="code">Security Code:</label>
+              <input name="code" class="code" size="3" required />
+            </fieldset>
+          </div>
 
-            <div class = "form3">
-              <fieldset>
-                <legend>Order Summary</legend>
-                <label for="itemTotal">Item Subtotal</label>
-                <p id="itemTotal"></p>
-                <label for="shipping">Shipping Estimate</label>
-                <p id="shipping"></p>
-                <label for="tax">Tax</label>
-                <p id="tax"></p>
-                <label for="orderTotal">Order Total</label>
-                <p id="orderTotal"></p>
-              </fieldset>
-              <button type="submit" id="checkout">Checkout</button>
-            </div>
-            
-          </form>
+          <div class="form3">
+            <fieldset>
+              <legend>Order Summary</legend>
+              <label for="itemTotal"
+                >Item Subtotal (<span id="itemQuantity"></span>)</label
+              >
+              <p id="itemTotal"></p>
+              <label for="shipping">Shipping Estimate</label>
+              <p id="shipping"></p>
+              <label for="tax">Tax</label>
+              <p id="tax"></p>
+              <label for="orderTotal">Order Total</label>
+              <p id="orderTotal"></p>
+            </fieldset>
+            <button type="submit" id="checkout">Checkout</button>
+          </div>
+        </form>
       </section>
     </main>
     <footer>&copy;NOT a real business</footer>
