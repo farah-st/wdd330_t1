@@ -1,4 +1,4 @@
-import { getLocalStorage, renderWithTemplate, setLocalStorage } from "./utils.mjs";
+import { addBreadcrumbs, getLocalStorage, renderWithTemplate, setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 import { backpackAnimation, getParam } from "./utils.mjs";
 
@@ -17,7 +17,6 @@ export default async function productDetails(productId) {
       const productDetails = document.querySelector(".product-detail");
       renderWithTemplate(productNotFoundTemplate,productDetails);
     }
-    
 };
 
 function productDetailsTemplate(product){

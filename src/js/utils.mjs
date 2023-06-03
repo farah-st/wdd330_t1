@@ -1,4 +1,4 @@
-import  productList  from "./productList.mjs";
+import { findProductById, getData } from "./productData.mjs";
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -79,14 +79,24 @@ export async function addBreadcrumbs() {
 
   // get the list of products 
   const categoryId = getParam("category");
+  const cat = await getData(categoryId);
   const breadCr = document.getElementById("breadcrumbs");
   const breadCrumbsParagraph = document.createElement("p");
-  const node = document.createTextNode(categoryId + " >> " + categoryId.length + " Items");
+  const node = document.createTextNode(categoryId + " >> " + cat.length + " Items");
   breadCrumbsParagraph.appendChild(node);
   breadCr.appendChild(breadCrumbsParagraph);
+
+  if (categoryId == null) {
+    const getproductId = getParam("product");
+    const product = await findProductById(getproductId);
+
+    // Remove previous children
+    const node = document.createTextNode(" >> " + product.Category);
+  breadCrumbsParagraph.appendChild(node);
+  breadCr.appendChild(breadCrumbsParagraph);
+  }
+
 }
-
-
 
 export function renderListWithTemplate (templateFn, parentElement, list, position = "afterbegin", clear = true, productToRender = 4){
 // Renders products using a template
