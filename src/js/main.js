@@ -1,4 +1,4 @@
-import { loadHeaderFooter, addBreadcrumbs } from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
 
 loadHeaderFooter();
