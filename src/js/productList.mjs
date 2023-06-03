@@ -1,5 +1,5 @@
 import { getData } from "./productData.mjs"
-import { renderListWithTemplate } from "./utils.mjs";
+import { addBreadcrumbs, renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product){
     // creates a template to join into HTML document
@@ -45,5 +45,9 @@ export default async function productList(selector, category){
     // render out the product list to the element
     renderListWithTemplate(productCardTemplate, element, products);
     document.querySelector(".title").innerHTML = category;
+
+
+
+
 }
 

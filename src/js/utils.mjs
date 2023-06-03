@@ -1,4 +1,4 @@
-import { getData } from "./productData.mjs";
+import  productList  from "./productList.mjs";
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -76,14 +76,14 @@ export function backpackAnimation() {
 }
 
 export async function addBreadcrumbs() {
- // const category = await getData(category);
+
+  // get the list of products 
+  const categoryId = getParam("category");
   const breadCr = document.getElementById("breadcrumbs");
   const breadCrumbsParagraph = document.createElement("p");
-  const node = document.createTextNode("fjdsklfj;kldj");
+  const node = document.createTextNode(categoryId + " >> " + categoryId.length + " Items");
   breadCrumbsParagraph.appendChild(node);
-    console.log(breadCr)
   breadCr.appendChild(breadCrumbsParagraph);
-
 }
 
 
