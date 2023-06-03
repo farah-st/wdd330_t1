@@ -1,5 +1,5 @@
 import { getLocalStorage, renderWithTemplate, setLocalStorage } from "./utils.mjs";
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./externalServices.mjs";
 import { backpackAnimation, getParam } from "./utils.mjs";
 
 // Main function

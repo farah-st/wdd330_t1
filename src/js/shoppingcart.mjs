@@ -70,7 +70,8 @@ function getTotal() {
 function renderCartTotal (GrandTotal) {
   let cart = getLocalStorage("so-cart");
   if (cart.length > 0){
-    document.getElementById("cart-total").innerHTML =  `<p id="cart-total">Total: $${GrandTotal}</p>`;
+    document.getElementById("cart-total").innerHTML =  `<p id="cart-total">Total: $${GrandTotal}</p>
+    <button id="checkout" onclick="window.location.href='../checkout/index.html';">Checkout</button>`;
   }
 }
 
