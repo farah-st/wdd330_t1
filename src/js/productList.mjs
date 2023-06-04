@@ -38,7 +38,7 @@ function sortProducts(productsArray, orderBy) {
       if (orderBy === "name") {
         if (a.name < b.name) return -1;
         if (a.name > b.name) return 1;
-      } else if (orderBy === "price") {
+      } else if (orderBy === "FinalPrice") {
         return a.price - b.price;
       }
       return 0;
