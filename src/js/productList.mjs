@@ -33,7 +33,19 @@ function discountTemplate(product){
     
 }
 
-export default async function productList(selector, category){
+function sortProducts(productsArray, orderBy) {
+    return productsArray.sort((a, b) => {
+      if (orderBy === "name") {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+      } else if (orderBy === "price") {
+        return a.price - b.price;
+      }
+      return 0;
+    });
+  }
+
+export default async function productList(selector, category, orderBy){
 // Creates li elements with productCardTemplate as template
 
     // get the element we will insert the list into from the selector
@@ -42,8 +54,11 @@ export default async function productList(selector, category){
     // get the list of products 
     const products = await getProductsByCategory(category);
 
+
+    const newProduct = sortProducts(products, orderBy)
     // render out the product list to the element
-    renderListWithTemplate(productCardTemplate, element, products);
+    renderListWithTemplate(productCardTemplate, element, newProduct);
     document.querySelector(".title").innerHTML = category;
+    return products;
 }
 

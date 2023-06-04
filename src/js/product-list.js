@@ -4,4 +4,4 @@ import productList from "./productList.mjs";
 const categoryId = getParam("category");
 
 loadHeaderFooter();
-productList(".product-list", categoryId);
+productList(".product-list", categoryId, orderBy);

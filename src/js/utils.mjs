@@ -54,7 +54,7 @@ export function backpackAnimation() {
   let pos = 10;
   function myInterval() {
     backpack[0].style.backgroundColor =
-      backpack[0].style.backgroundColor == "green" ? "white" : "green";
+    backpack[0].style.backgroundColor == "green" ? "white" : "green";
     backpack[0].style.position = "absolute";
     backpack[0].style.top = pos + "px";
     backpack[0].style.right = pos + "px";
