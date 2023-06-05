@@ -16,7 +16,7 @@
 
   <body>
     <header class="divider"></header>
-    <main>
+    <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
         <form name="checkout" class="grid">
@@ -24,17 +24,17 @@
             <fieldset>
               <legend>Shipping</legend>
               <label for="fname">First Name:</label>
-              <input name="fname" class="fname" required />
+              <input name="fname" class="fname" value="John" required />
               <label for="lname">Last Name:</label>
-              <input name="lname" class="lname" required />
+              <input name="lname" class="lname" value="Johnson" required />
               <label for="street">Street:</label>
-              <input name="street" class="street" required />
+              <input name="street" class="street" value="Street 123" required />
               <label for="city">City:</label>
-              <input name="city" class="city" required />
+              <input name="city" class="city" value="New York" required />
               <label for="state">State:</label>
-              <input name="state" class="state" required />
+              <input name="state" class="state" value="New York" required />
               <label for="zip">Zip:</label>
-              <input name="zip" type="number" class="zip" id="zip" required />
+              <input name="zip" type="number" class="zip" id="zip" value="3000" required />
             </fieldset>
           </div>
 
@@ -46,18 +46,19 @@
                 name="cardNumber"
                 type="number"
                 class="cardNumber"
-                size="16"
+                value="1234123412341234"
                 required
               />
               <label for="expiration">Expiration:</label>
               <input
                 name="expiration"
                 class="expiration"
-                min="2023-06"
+                min="06/29"
+                value="06/29"
                 required
               />
               <label for="code">Security Code:</label>
-              <input name="code" class="code" size="3" required />
+              <input name="code" type="number" class="code" value="123" required />
             </fieldset>
           </div>
 
@@ -80,6 +81,6 @@
         </form>
       </section>
     </main>
-    <footer>&copy;NOT a real business</footer>
+    <footer></footer>
   </body>
 </html>
