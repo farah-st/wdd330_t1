@@ -45,9 +45,9 @@ function sortProducts(productsArray, orderBy) {
     });
   }
 
-export default async function productList(selector, category, orderBy = "name") {
-    // Creates li elements with productCardTemplate as template
-  
+export default async function productList(selector, category, orderBy = "name"){
+// Creates li elements with productCardTemplate as template
+
     // get the element we will insert the list into from the selector
     const element = document.querySelector(selector);
   

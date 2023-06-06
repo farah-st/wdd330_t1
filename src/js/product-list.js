@@ -3,6 +3,7 @@ import productList from "./productList.mjs";
 
 const categoryId = getParam("category");
 // const orderBy = getParam("orderBy", "Name");
+//const orderById = getParam("name", "FinalPrice");
 
 loadHeaderFooter();
 productList(".product-list", categoryId);
