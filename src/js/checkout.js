@@ -18,6 +18,6 @@ document.querySelector("#checkout").addEventListener("click", (e) => {
   var chk_status = myForm.checkValidity();
   myForm.reportValidity();
   if (chk_status)
-    checkoutProcess.checkout();
-  //checkoutProcess.checkout(document.forms["checkout"]);
+    //checkoutProcess.checkout();
+    checkoutProcess.checkout(document.forms["checkout"]);
 });
