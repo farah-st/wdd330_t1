@@ -16,17 +16,16 @@ document.querySelector("#checkout").addEventListener("click", (e) => {
   e.preventDefault();
   var myForm = document.forms[0];
   var chk_status = myForm.checkValidity();
-  //myForm.reportValidity();
-  if (chk_status){
+  if (chk_status) {
     checkoutProcess.checkout(document.forms["checkout"]);
   } else {
     Array.from(myForm.querySelectorAll(":invalid"))
-                .filter((item) => {
-                  return item.tagName.toLowerCase() !== "fieldset";
-                })
-                .reverse()
-                .map((item) =>{
-                  alertMessage(item.dataset.name)
-                }); 
+      .filter((item) => {
+        return item.tagName.toLowerCase() !== "fieldset";
+      })
+      .reverse()
+      .map((item) => {
+        alertMessage(item.dataset.name);
+      });
   }
 });
