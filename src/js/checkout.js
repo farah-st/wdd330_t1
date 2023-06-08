@@ -1,4 +1,4 @@
-import { loadHeaderFooter } from "./utils.mjs";
+import { alertMessage, loadHeaderFooter } from "./utils.mjs";
 import checkoutProcess from "./checkoutProcess.mjs";
 
 loadHeaderFooter();
@@ -17,7 +17,13 @@ document.querySelector("#checkout").addEventListener("click", (e) => {
   var myForm = document.forms[0];
   var chk_status = myForm.checkValidity();
   myForm.reportValidity();
-  if (chk_status)
-    //checkoutProcess.checkout();
+  if (chk_status){
     checkoutProcess.checkout(document.forms["checkout"]);
+  } else {
+    let message = myForm.querySelectorAll(":invalid");
+    console.log(message)
+    alertMessage(message)
+  }
+    
+    
 });
