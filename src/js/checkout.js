@@ -16,14 +16,17 @@ document.querySelector("#checkout").addEventListener("click", (e) => {
   e.preventDefault();
   var myForm = document.forms[0];
   var chk_status = myForm.checkValidity();
-  myForm.reportValidity();
+  //myForm.reportValidity();
   if (chk_status){
     checkoutProcess.checkout(document.forms["checkout"]);
   } else {
-    let message = myForm.querySelectorAll(":invalid");
-    console.log(message)
-    alertMessage(message)
+    Array.from(myForm.querySelectorAll(":invalid"))
+                .filter((item) => {
+                  return item.tagName.toLowerCase() !== "fieldset";
+                })
+                .reverse()
+                .map((item) =>{
+                  alertMessage(item.dataset.name)
+                }); 
   }
-    
-    
 });

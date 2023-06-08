@@ -138,14 +138,22 @@ export function alertMessage(message, scroll=true){
     // add a class to style the alert
     alert.classList.add('alert');
     // set the contents. You should have a message and an X or something the user can click on to remove
-    alert.innerHTML = `<p>Invalid ${message}   X</p>`;
+    const textAlert = document.createElement("p");
+    const exitButton = document.createElement("button");
+    
+    textAlert.textContent = `Invalid ${message}`;
+    exitButton.textContent = "X"
+    
     // add a listener to the alert to see if they clicked on the X
     // if they did then remove the child
-    alert.addEventListener('click', function(e) {
+    exitButton.addEventListener('click', function(e) {
         if(e.target.tagName) { // how can we tell if they clicked on our X or on something else?  hint: check out e.target.tagName or e.target.innerText
-          main.removeChild(this);
+          main.removeChild(this.parentNode);
         }
     })
+
+    alert.prepend(textAlert);
+    alert.prepend(exitButton);
     // add the alert to the top of main
     const main = document.querySelector('main');
     main.prepend(alert);
