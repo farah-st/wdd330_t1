@@ -60,3 +60,23 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #45a049;
 }
+
+.alert {
+  width: 20%;
+  background-color: #ec9340;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alert p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.alert button {
+  background-color: transparent;
+  font-size: 10px;
+  cursor: pointer;
+}

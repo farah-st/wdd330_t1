@@ -132,11 +132,11 @@ export function loadHeaderFooter() {
 }
   
 
-export function alertMessage(message, scroll=true){
+export function alertMessage(message, scroll = true){
     // create element to hold our alert
-    const alert = document.createElement('div');
+    const alert = document.createElement("div");
     // add a class to style the alert
-    alert.classList.add('alert');
+    alert.classList.add("alert");
     // set the contents. You should have a message and an X or something the user can click on to remove
     const textAlert = document.createElement("p");
     const exitButton = document.createElement("button");
@@ -146,7 +146,7 @@ export function alertMessage(message, scroll=true){
     
     // add a listener to the alert to see if they clicked on the X
     // if they did then remove the child
-    exitButton.addEventListener('click', function(e) {
+    exitButton.addEventListener("click", function(e) {
         if(e.target.tagName) { // how can we tell if they clicked on our X or on something else?  hint: check out e.target.tagName or e.target.innerText
           main.removeChild(this.parentNode);
         }
@@ -155,7 +155,7 @@ export function alertMessage(message, scroll=true){
     alert.prepend(textAlert);
     alert.prepend(exitButton);
     // add the alert to the top of main
-    const main = document.querySelector('main');
+    const main = document.querySelector("main");
     main.prepend(alert);
     // make sure they see the alert by scrolling to the top of the window
     //we may not always want to do this...so default to scroll=true, but allow it to be passed in and overridden.
