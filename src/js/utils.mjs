@@ -75,7 +75,7 @@ export function backpackAnimation() {
 
 
 
-export function renderListWithTemplate (templateFn, parentElement, list, position = "afterbegin", clear = true, productToRender = 4){
+export function renderListWithTemplate (templateFn, parentElement, list, position = "afterbegin", clear = true){
 // Renders products using a template
 
   // If clear is true, then clean the parentElement

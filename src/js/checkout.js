@@ -21,7 +21,8 @@ document.querySelector("#checkout").addEventListener("click", (e) => {
   } else {
     Array.from(myForm.querySelectorAll(":invalid"))
       .filter((item) => {
-        return item.tagName.toLowerCase() !== "fieldset";
+        let fieldsetPresent = item.tagName.toLowerCase() !== "fieldset";
+        return fieldsetPresent;
       })
       .reverse()
       .map((item) => {
