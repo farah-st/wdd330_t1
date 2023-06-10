@@ -20,7 +20,7 @@ export default async function productDetails(productId) {
     
 };
 
-function productDetailsTemplate(product){
+export function productDetailsTemplate(product){
   return `
           <h3 id="productName">${product.Name}</h3>
           <h2 class="divider" id="productNameWithoutBrand">${product.Brand.Name}</h2>
@@ -29,7 +29,7 @@ function productDetailsTemplate(product){
           <p class="product__color" id="productColorName">${product.Colors[0].ColorName}</p>
           <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
           <div class="product-detail__add">
-            <button id="addToCart" data-id="">Add to Cart</button>
+            <button id="addToCart">Add to Cart</button>
           </div>
           `
 };

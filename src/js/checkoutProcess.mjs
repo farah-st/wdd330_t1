@@ -44,8 +44,6 @@ const checkoutProcess = {
     const itemSubtotal = document.querySelector("#itemTotal");
     const itemQuantity = document.querySelector("#itemQuantity");
 
-    //let grandTotal = 0;
-    //let this.quantityTotal = 0;
     for(let t = 0; t < this.list.length; t++){
       this.itemTotal += (this.list[t].FinalPrice * this.list[t].quantity);
       this.quantityTotal += parseFloat(this.list[t].quantity);
@@ -57,7 +55,6 @@ const checkoutProcess = {
   calculateOrdertotal: function() {
     // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
     this.tax = (this.itemTotal * 0.06).toFixed(2);
-    //let shipping = 0;
     
     if (this.quantityTotal > 1) {
      this.shipping = (this.quantityTotal - 1) * 2 + 10;
@@ -66,8 +63,6 @@ const checkoutProcess = {
       this.shipping = 10;
     }
 
-    //this.tax = tax;
-    //this.shipping = shipping;
     this.orderTotal = (parseFloat(this.tax) + parseFloat(this.shipping) + parseFloat(this.itemTotal)).toFixed(2);
     // display the totals.
     this.displayOrderTotals();
@@ -83,12 +78,6 @@ const checkoutProcess = {
     shipping.innerHTML = this.shipping;
     tax.innerHTML = this.tax;
     orderTotal.innerHTML = this.orderTotal;
-
-    // itemTotal = this.itemTotal;
-    // shipping = this.shipping;
-    // tax = this.tax;
-    // orderTotal = this.orderTotal;
-
   },
 
   checkout: async function(form) {
