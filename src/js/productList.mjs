@@ -45,18 +45,31 @@ function sortProducts(productsArray, orderBy) {
     });
   }
 
-export default async function productList(selector, category, orderBy = "name"){
+  function filterByNameProducts(productList, textFilter){
+    if (!textFilter==""){
+        return productList.filter((item) => 
+        item.Name.toLowerCase().includes(textFilter.toLowerCase()));
+    }
+    return productList;
+}
+
+
+
+export default async function productList(selector, category, orderBy = "name", textFilter=""){
 // Creates li elements with productCardTemplate as template
 
     // get the element we will insert the list into from the selector
     const element = document.querySelector(selector);
   
     // get the list of products
-    const products = await getProductsByCategory(category);
+    let products = await getProductsByCategory(category);
   
-    const sortedProducts = sortProducts(products, orderBy);
+    products = sortProducts(products, orderBy);
+
+    products = filterByNameProducts(products,textFilter);
+
     // render out the product list to the element
-    renderListWithTemplate(productCardTemplate, element, sortedProducts);
+    renderListWithTemplate(productCardTemplate, element, products);
     document.querySelector(".title").innerHTML = category;
     return products;
   }
