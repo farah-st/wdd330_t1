@@ -21,10 +21,16 @@ export default async function productDetails(productId) {
 };
 
 export function productDetailsTemplate(product){
+  const smallerImage = product.Images.PrimarySmall;
+  const mediumImage = product.Images.PrimaryMedium;
+  const largerImage = product.Images.PrimaryLarge;
   return `
           <h3 id="productName">${product.Name}</h3>
           <h2 class="divider" id="productNameWithoutBrand">${product.Brand.Name}</h2>
-          <img id="productImage" class="divider" src="${product.Images.PrimaryLarge}" alt="${product.Name}">
+          <img id="productImage" class="divider" src="${smallerImage}" 
+          srcset="${smallerImage} 480w, ${mediumImage} 768w, ${largerImage} 1200w"
+          sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, 1200px"
+          alt="${product.Name}">
           <p class="product-card__price" id="productFinalPrice">$${product.FinalPrice}</p>
           <p class="product__color" id="productColorName">${product.Colors[0].ColorName}</p>
           <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
