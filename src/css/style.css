@@ -226,6 +226,10 @@ button {
   color: green;
 }
 
+.savings {
+  color: darkblue;
+  background-color: yellow;
+}
 .card__brand {
   font-size: var(--small-font);
 }
