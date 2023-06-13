@@ -87,13 +87,18 @@ export async function addBreadcrumbs() {
   breadCr.appendChild(breadCrumbsParagraph);
 
   if (categoryId == null) {
+
+    
+    let removeBread = document.getElementById("breadcrumbs");
+    removeBread.removeChild(breadCrumbsParagraph);
+
     const getproductId = getParam("product");
     const product = await findProductById(getproductId);
 
-    // Remove previous children
-    const node = document.createTextNode(" >> " + product.Category);
-  breadCrumbsParagraph.appendChild(node);
-  breadCr.appendChild(breadCrumbsParagraph);
+ const breadCrumbsParagraph2 = document.createElement("p");
+    const node = document.createTextNode(product.Category);
+  breadCrumbsParagraph2.appendChild(node);
+  breadCr.appendChild(breadCrumbsParagraph2);
   }
 
 }

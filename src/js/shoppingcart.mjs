@@ -1,12 +1,13 @@
-import { getLocalStorage, setLocalStorage, renderListWithTemplate } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, renderListWithTemplate, updateCartSuperscript } from "./utils.mjs";
 
 export default async function shoppingcart() {
-  try {
+ try {
     const cartItems = getLocalStorage("so-cart");
     if (cartItems.length === 0) {throw Error}
     const htmlItems = document.querySelector(".product-list");
     await renderListWithTemplate(cartItemTemplate,htmlItems,cartItems);
     killProductEvent();
+    changeQuantity();
 
   } catch (error) {
     const emptyCartAlert = cartEmptyTemplate();
@@ -28,12 +29,11 @@ function cartItemTemplate(item) {
       <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">qty: ${item.quantity}</p>
+   <p class="cart-card__quantity"> Quantity:
+   <input type="number" class="quantityCart" name="quantityCart" data-id="${item.Id}" data-number="${item.quantity}" value="${item.quantity}"></p>
     <p class="cart-card__price">$${calculateFinalPrice(item)}</p>
   </li>`;
 };
-
-
 
 function calculateFinalPrice(item){
   let FinalPrice = item.FinalPrice * item.quantity;
@@ -70,13 +70,14 @@ function getTotal() {
 function renderCartTotal (GrandTotal) {
   let cart = getLocalStorage("so-cart");
   if (cart.length > 0){
-    document.getElementById("cart-total").innerHTML =  `<p id="cart-total">Total: $${GrandTotal}</p>`;
+    document.getElementById("cart-total").innerHTML =  `<p id="cart-total">Total: $${GrandTotal}</p>
+    <button id="checkout" onclick="window.location.href='../checkout/index.html';">Checkout</button>`;
   }
 }
 
 function killProductEvent(){
   const removeItem = document.querySelectorAll(".kill-product");
-  
+
   //remove Item from cart
   removeItem.forEach(button => {
   button.addEventListener('click', function(element) {
@@ -93,13 +94,43 @@ function killProductEvent(){
       }
       location.reload();
       shoppingcart();
+      getTotal();
     });
-  });
-
-  
+  });  
 }
 
+function changeQuantity() {
+  const Quantity = document.querySelectorAll(".quantityCart");
 
+      let cart = getLocalStorage("so-cart");
+  
+  Quantity.forEach(input => {
+      input.addEventListener('change', function(element) {
+        element.preventDefault();
+              const {id} = element.target.dataset;
+              const {number} = element.target.dataset;
+
+        for(let i = 0; i < cart.length; i++){
+          if (id == cart[i].Id) {
+
+              if (Quantity[i].value > 0) {
+                 console.log(id, Quantity[i].value);
+                 cart[i].quantity = Quantity[i].value;
+              }
+              else {
+                cart.splice(i, 1);
+              }
+
+            setLocalStorage("so-cart", cart);
+            shoppingcart();
+            updateCartSuperscript();
+            getTotal();
+          }
+        }
+      }); 
+    });
+
+}
 
 
 shoppingcart();
