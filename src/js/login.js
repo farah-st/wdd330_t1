@@ -1,5 +1,6 @@
 import { getParam, loadHeaderFooter } from "./utils.mjs";
-
+import { checkLogin } from "./auth.mjs"; 
+checkLogin();
 loadHeaderFooter();
 const redirect = getParam("redirect");
 

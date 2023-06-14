@@ -43,3 +43,13 @@ export async function loginRequest(creds){
   };
   return await fetch(baseURL + "login/", options).then(convertToJson);
 }
+
+export async function makeOrder(token){
+  const options = {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  };
+  return await fetch(baseURL + "orders/", options).then(convertToJson);
+}
