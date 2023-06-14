@@ -37,6 +37,13 @@ export function productDetailsTemplate(product){
           <div class="product-detail__add">
             <button id="addToCart">Add to Cart</button>
           </div>
+
+          <div class="product-comment">
+          <h4>Reviews</h4>
+            <label for="comment"> Add a Comment:</label>
+            <input type="text" placeholder="add comment here">
+            <button id="submit-comment" type="submit">Submit</button>
+          </div>
           `
 };
 
@@ -50,6 +57,12 @@ function productNotFoundTemplate(){
         </a>
           `
 }
+
+//document.querySelector(".submit-comment").addEventListener("click", addComment);
+function addComment() {
+  console.log(product);
+}
+
 
 // add product to cart
 export function addProductToCart(product) {
