@@ -19,7 +19,7 @@ export function checkLogin(){
     const valid = isTokenValid(token);
 
     if(!valid){
-        setLocalStorage("so_token");
+        localStorage.removeItem("so_Token")
         const location = window.location;
         window.location = `/login/index.html?redirect=${location.pathname}`;
     } else return token;
@@ -30,9 +30,9 @@ export function isTokenValid(token){
         const decoded = jwt_decode(token);
         let date = new Date();
         if(decoded.exp * 1000 < date.getTime()){
-            return true;
-        } else{
             return false;
+        } else{
+            return true;
         }
     } else {
         return false;

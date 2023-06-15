@@ -119,7 +119,7 @@ function loadTemplate(path) {
   }
 }
 
-export function loadHeaderFooter() {
+export async function loadHeaderFooter() {
 
    const headerTemplateFn = loadTemplate("/partials/header.html");
    
@@ -127,8 +127,11 @@ export function loadHeaderFooter() {
 
    const headerE1 = document.querySelector("header");
    const footerE1 = document.querySelector("footer");
-   renderWithTemplate(headerTemplateFn, headerE1, null, updateCartSuperscript);
-   renderWithTemplate(footerTemplateFn, footerE1);
+   await renderWithTemplate(headerTemplateFn, headerE1, null, updateCartSuperscript);
+   await renderWithTemplate(footerTemplateFn, footerE1);
+   document.querySelector("#login-button").addEventListener("click", ()=>{
+    window.open(`/login/index.html?redirect=${window.location}`, "_blank").focus();
+   })
 }
   
 

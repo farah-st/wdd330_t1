@@ -41,7 +41,8 @@ export async function loginRequest(creds){
     },
     body: JSON.stringify(creds),
   };
-  return await fetch(baseURL + "login/", options).then(convertToJson);
+  const response = await fetch(baseURL + "login", options).then(convertToJson);
+  return response.accessToken;
 }
 
 export async function makeOrder(token){
@@ -51,5 +52,6 @@ export async function makeOrder(token){
       "Authorization": `Bearer ${token}`
     }
   };
-  return await fetch(baseURL + "orders/", options).then(convertToJson);
+  const response = await fetch(baseURL + "orders", options).then(convertToJson);
+  return response;
 }
