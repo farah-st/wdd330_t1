@@ -14,6 +14,10 @@ export default async function productDetails(productId) {
       // add listener to Add to Cart button
       document.getElementById("addToCart").addEventListener("click", addToCartHandler);
 
+
+      const productComment = document.querySelector(".form");
+      await renderWithTemplate(productDetailsTemplate,productDetails,product);
+
       document.getElementById("submit-comment").addEventListener("click", addComment);
 
 
@@ -41,14 +45,17 @@ export function productDetailsTemplate(product){
           <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
           <div class="product-detail__add">
             <button id="addToCart">Add to Cart</button>
+          </div>
+            <form name="comment" class="grid">
+          <div class="form">
+            <fieldset>
             <p></p>
             <label for="comment"> Add a Comment </label>
-            <input type="text" placeholder="add comment here" name="comment">
-            <p></p>
+            <input type="text" placeholder="add comment here" name="comment" value="redd">
+            </fieldset>
             <button type="submit" id="submit-comment">Submit</button>
-
-            <h4>Reviews</h4>
           </div>
+          </form>
           `
 };
 
@@ -65,8 +72,7 @@ function productNotFoundTemplate(){
 
 
  function addComment() {
-
-
+  alert(document.getElementsByTagName("comment").value)
 }
 
 // add product to cart
