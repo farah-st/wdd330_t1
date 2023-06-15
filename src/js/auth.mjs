@@ -1,5 +1,5 @@
 import jwt_decode from "jwt-decode";
-import loginRequest from "./externalServices.mjs";
+import { loginRequest } from "./externalServices.mjs";
 import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 export async function login(creds, redirect = "/"){
