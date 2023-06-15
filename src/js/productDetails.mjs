@@ -13,6 +13,11 @@ export default async function productDetails(productId) {
       await renderWithTemplate(productDetailsTemplate,productDetails,product);
       // add listener to Add to Cart button
       document.getElementById("addToCart").addEventListener("click", addToCartHandler);
+
+      document.getElementById("submit-comment").addEventListener("click", addComment);
+
+
+
     } catch {
       const productDetails = document.querySelector(".product-detail");
       renderWithTemplate(productNotFoundTemplate,productDetails);
@@ -36,12 +41,13 @@ export function productDetailsTemplate(product){
           <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
           <div class="product-detail__add">
             <button id="addToCart">Add to Cart</button>
-          
-
-          <h4>Reviews</h4>
-            <label for="comment"> Add a Comment:</label>
+            <p></p>
+            <label for="comment"> Add a Comment </label>
             <input type="text" placeholder="add comment here" name="comment">
+            <p></p>
             <button type="submit" id="submit-comment">Submit</button>
+
+            <h4>Reviews</h4>
           </div>
           `
 };
@@ -57,6 +63,11 @@ function productNotFoundTemplate(){
           `
 }
 
+
+ function addComment() {
+
+
+}
 
 // add product to cart
 export function addProductToCart(product) {
