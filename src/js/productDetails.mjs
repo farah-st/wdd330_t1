@@ -36,13 +36,12 @@ export function productDetailsTemplate(product){
           <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
           <div class="product-detail__add">
             <button id="addToCart">Add to Cart</button>
-          </div>
+          
 
-          <div class="product-comment">
           <h4>Reviews</h4>
             <label for="comment"> Add a Comment:</label>
-            <input type="text" placeholder="add comment here">
-            <button id="submit-comment" type="submit">Submit</button>
+            <input type="text" placeholder="add comment here" name="comment">
+            <button type="submit" id="submit-comment">Submit</button>
           </div>
           `
 };
@@ -56,11 +55,6 @@ function productNotFoundTemplate(){
                 <button>Return to Shop</button>
         </a>
           `
-}
-
-//document.querySelector(".submit-comment").addEventListener("click", addComment);
-function addComment() {
-  console.log(product);
 }
 
 
