@@ -15,7 +15,7 @@ export default async function productDetails(productId) {
       document.getElementById("addToCart").addEventListener("click", addToCartHandler);
 
 
-      const productComment = document.querySelector(".form");
+      const productComment = document.querySelector(".commentform");
       await renderWithTemplate(productDetailsTemplate,productDetails,product);
 
       document.getElementById("submit-comment").addEventListener("click", addComment);
@@ -47,7 +47,7 @@ export function productDetailsTemplate(product){
             <button id="addToCart">Add to Cart</button>
           </div>
             <form name="comment" class="grid">
-          <div class="form">
+          <div class="commentform">
             <fieldset>
             <p></p>
             <label for="comment"> Add a Comment </label>
@@ -71,8 +71,24 @@ function productNotFoundTemplate(){
 }
 
 
- function addComment() {
-  alert(document.getElementsByTagName("comment").value)
+ function addComment(e) {
+  e.preventDefault();
+  alert("RrR");
+  var myForm = document.forms[0];
+  var chk_status = myForm.checkValidity();
+  if (chk_status) {
+    checkoutProcess.checkout(document.forms["checkout"]);
+  } else {
+    Array.from(myForm.querySelectorAll(":invalid"))
+      .filter((item) => {
+        let fieldsetPresent = item.tagName.toLowerCase() !== "fieldset";
+        return fieldsetPresent;
+      })
+      .reverse()
+      .map((item) => {
+        alertMessage(item.dataset.name);
+      });
+  }
 }
 
 // add product to cart
