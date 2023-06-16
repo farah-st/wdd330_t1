@@ -130,7 +130,10 @@ export async function loadHeaderFooter() {
    await renderWithTemplate(headerTemplateFn, headerE1, null, updateCartSuperscript);
    await renderWithTemplate(footerTemplateFn, footerE1);
    document.querySelector("#login-button").addEventListener("click", ()=>{
-    window.open(`/login/index.html?redirect=${window.location}`, "_blank").focus();
+    window.open(`/login/index.html?redirect=${location.pathname}`, "_blank").focus();
+   })
+   document.querySelector("#order-button").addEventListener("click", ()=>{
+    window.open(`/orders/index.html`, "_blank").focus();
    })
 }
   
