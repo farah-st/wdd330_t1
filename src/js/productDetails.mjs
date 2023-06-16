@@ -1,6 +1,7 @@
 import { getLocalStorage, renderWithTemplate, setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./externalServices.mjs";
 import { backpackAnimation, getParam } from "./utils.mjs";
+import { formDataToJSON } from "./checkoutProcess.mjs";
 
 // Main function
 export default async function productDetails(productId) {
@@ -50,8 +51,8 @@ export function productDetailsTemplate(product){
           <div class="commentform">
             <fieldset>
             <p></p>
-            <label for="comment"> Add a Comment </label>
-            <input type="text" placeholder="add comment here" name="comment" value="redd">
+            <label for="comment" > Add a Comment </label>
+            <input type="text" placeholder="add comment here" name="comment" data-id=${product.Id}>
             </fieldset>
             <button type="submit" id="submit-comment">Submit</button>
           </div>
@@ -73,12 +74,17 @@ function productNotFoundTemplate(){
 
  function addComment(e) {
   e.preventDefault();
-  alert("RrR");
   var myForm = document.forms[0];
   var chk_status = myForm.checkValidity();
   if (chk_status) {
-    checkoutProcess.checkout(document.forms["checkout"]);
+    document.forms["comment"];
+    const json = formDataToJSON(document.forms["comment"]);
+    json.todays_date = new Date();
+//document.querySelector('input').value
+    console.log(document.forms["comment"])
+    console.log(e.target.dataset.id)
   } else {
+    console.log("TT")
     Array.from(myForm.querySelectorAll(":invalid"))
       .filter((item) => {
         let fieldsetPresent = item.tagName.toLowerCase() !== "fieldset";
