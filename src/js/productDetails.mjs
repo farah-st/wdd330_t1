@@ -10,19 +10,12 @@ export default async function productDetails(productId) {
       if (product === undefined) {
         throw Error();
       }
+      const productComment = document.querySelector(".commentform");
       const productDetails = document.querySelector(".product-detail");
       await renderWithTemplate(productDetailsTemplate,productDetails,product);
       // add listener to Add to Cart button
       document.getElementById("addToCart").addEventListener("click", addToCartHandler);
-
-
-      const productComment = document.querySelector(".commentform");
-      await renderWithTemplate(productDetailsTemplate,productDetails,product);
-
       document.getElementById("submit-comment").addEventListener("click", addComment);
-
-
-
     } catch {
       const productDetails = document.querySelector(".product-detail");
       renderWithTemplate(productNotFoundTemplate,productDetails);
@@ -57,6 +50,7 @@ export function productDetailsTemplate(product){
             <button type="submit" id="submit-comment">Submit</button>
           </div>
           </form>
+
           `
 };
 
@@ -80,9 +74,10 @@ function productNotFoundTemplate(){
     document.forms["comment"];
     const json = formDataToJSON(document.forms["comment"]);
     json.todays_date = new Date();
-//document.querySelector('input').value
-    console.log(document.forms["comment"])
-    console.log(e.target.dataset.id)
+    json.id = document.querySelector('input').dataset.id;
+    console.log(document.querySelector('input').value)
+    console.log(document.querySelector('input').dataset.id)
+    
   } else {
     console.log("TT")
     Array.from(myForm.querySelectorAll(":invalid"))
