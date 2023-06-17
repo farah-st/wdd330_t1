@@ -11,6 +11,36 @@ export default async function productDetails(productId) {
       }
       const productDetails = document.querySelector(".product-detail");
       await renderWithTemplate(productDetailsTemplate,productDetails,product);
+      
+      const checkColor = document.querySelectorAll(".check-color");
+      
+      checkColor.forEach((item)=>{
+          let quickView = document.querySelector(".quick-view");
+
+          if (quickView == null) {
+            item.addEventListener(
+              "mouseover",
+              async function(){
+                                await renderWithTemplate(
+                                                  displayColorTemplate,
+                                                  productDetails,
+                                                  item.dataset.preview,
+                                                  undefined,
+                                                  undefined,
+                                                  false);
+                                }
+                                  )
+            item.addEventListener(
+              "mouseout",function(){
+                document.querySelector(".quick-view").remove()
+              })
+              
+            }
+            else {
+              quickView.remove();
+            }
+        })
+
       // add listener to Add to Cart button
       document.getElementById("addToCart").addEventListener("click", addToCartHandler);
     } catch {
@@ -31,8 +61,9 @@ export function productDetailsTemplate(product){
           srcset="${smallerImage} 480w, ${mediumImage} 768w, ${largerImage} 1200w"
           sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, 1200px"
           alt="${product.Name}">
+          
           <p class="product-card__price" id="productFinalPrice">$${product.FinalPrice}</p>
-          <p class="product__color" id="productColorName">${product.Colors[0].ColorName}</p>
+          <div class="product-colors">${displayColors(product.Colors)}</div>
           <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
           <div class="product-detail__add">
             <button id="addToCart">Add to Cart</button>
@@ -48,6 +79,30 @@ function productNotFoundTemplate(){
         <a href="/">
                 <button>Return to Shop</button>
         </a>
+          `
+}
+
+function displayColors(colorsList){
+  const htmlElements = colorsList.map((item)=>{
+    return `<div id="product-color-${item.ColorCode}">
+              <input type="radio" id="${item.ColorCode}" name="color-option">
+              <img
+                src="${item.ColorChipImageSrc}"
+                alt="${item.ColorName}"
+                data-preview="${item.ColorPreviewImageSrc}"
+                class="check-color"> 
+              ${item.ColorName}
+            </div>
+            `
+  });
+  return htmlElements.join("");
+}
+
+function displayColorTemplate(image){
+  return `                  
+            <img src="${image}"
+            alt="Preview"
+            class="quick-view color-quick-view">
           `
 }
 

@@ -86,6 +86,7 @@ export default async function productList(selector, category, orderBy = "name", 
   
     // get the list of products
     let products = await getProductsByCategory(category);
+    console.log(products)
   
     products = sortProducts(products, orderBy);
 
