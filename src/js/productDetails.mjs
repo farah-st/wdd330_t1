@@ -23,10 +23,13 @@ export default async function productDetails(productId) {
     
 };
 
-export function productDetailsTemplate(product, comment){
+export function productDetailsTemplate(product){
   const smallerImage = product.Images.PrimarySmall;
   const mediumImage = product.Images.PrimaryMedium;
   const largerImage = product.Images.PrimaryLarge;
+  const comment = getLocalStorage("so-comment");
+
+
   return `
           <h3 id="productName">${product.Name}</h3>
           <h2 class="divider" id="productNameWithoutBrand">${product.Brand.Name}</h2>
@@ -52,7 +55,7 @@ export function productDetailsTemplate(product, comment){
           </form>
           <div class="seeComments">
           <h3>Review</h3>
-          <p class="displayComment">${comment}</p>
+          <p class="displayComment">${comment[0].id}</p>
           </div>
           `
 };
@@ -68,16 +71,17 @@ function productNotFoundTemplate(){
           `
 }
 
-export function showComments(product) {
+export function showComments(product, comment) {
 
 
   const showComment = getLocalStorage("so-comment");
-  for(let i = 0; i > showComment.length; i++) {
-     console.log(showComment[i].id)
-     alert("P")
-     i++;
+  for(let i = 0; i < showComment.length; i++) {
+    // console.log(showComment[i].id)
+     if (showComment[i].id == product) {
+        alert(showComment[i].comment)
+        return showComment[i].comment;
+     }
   }
- console.log(showComment.length)
 }
 
 
