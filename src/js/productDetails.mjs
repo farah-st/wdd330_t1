@@ -70,20 +70,22 @@ function productNotFoundTemplate(){
 
  function addComment(e) {
   e.preventDefault();
-  const comments = getLocalStorage("so-comment");
-  if ((getLocalStorage("so-comment") === null)) {
+  
+  if ((getLocalStorage("so-comment") == null)) {
     setLocalStorage("so-comment", []);
-    console.log(getLocalStorage("so-comment"))
   };
+  const comments = getLocalStorage("so-comment");
   var myForm = document.forms[0];
   var chk_status = myForm.checkValidity();
   if (chk_status) {
+
     const json = formDataToJSON(document.forms["comment"]);
     json.todays_date = new Date();
     json.id = document.querySelector('input').dataset.id;
     
-    console.log(setLocalStorage("so-comment"))
-    setLocalStorage("so-comment", [json]);
+    comments.push(json);
+    setLocalStorage("so-comment", comments);
+    window.location.reload();
   }
       
   else {
