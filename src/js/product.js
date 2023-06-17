@@ -5,5 +5,6 @@ import productDetails, { showComments } from "./productDetails.mjs";
 const productID = getParam("product");
 
 productDetails(productID);
-showComments(productID);
+
 loadHeaderFooter();
+showComments(productID);

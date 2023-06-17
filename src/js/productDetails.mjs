@@ -17,6 +17,7 @@ export default async function productDetails(productId) {
       // add listener to Add to Cart button
       document.getElementById("addToCart").addEventListener("click", addToCartHandler);
       document.getElementById("submit-comment").addEventListener("click", addComment);
+      
     } catch {
       const productDetails = document.querySelector(".product-detail");
       renderWithTemplate(productNotFoundTemplate,productDetails);
@@ -28,7 +29,6 @@ export function productDetailsTemplate(product){
   const smallerImage = product.Images.PrimarySmall;
   const mediumImage = product.Images.PrimaryMedium;
   const largerImage = product.Images.PrimaryLarge;
-  const comment = getLocalStorage("so-comment");
 
   return `
           <h3 id="productName">${product.Name}</h3>
@@ -53,12 +53,6 @@ export function productDetailsTemplate(product){
             <button type="submit" id="submit-comment">Submit</button>
           </div>
           </form>
-          <h3>Review</h3>
-          <div class="seeComments" >
-          <ul id="displayComment">
-          <li>${comment[0].comment}
-          </ul>
-          </div>
           `
 };
 
@@ -73,19 +67,22 @@ function productNotFoundTemplate(){
           `
 }
 
-export function showComments(product) {
+export async function showComments(product) {
 
-  let commentss = document.getElementById("displayComment").innerHTML;
   const showComment = getLocalStorage("so-comment");
   for(let i = 0; i < showComment.length; i++) {
     
      if (showComment[i].id == product) {
-       console.log(showComment[i].id)
-     commentss = `<li>${showComment[i].comment}<li>`;
-     console.log(document.getElementById("displayComment"))
+
+     const commentss = document.getElementById("displayComment");
+     const Paragraph = document.createElement("p");
+     const node = document.createTextNode(showComment[i].comment);
+     Paragraph.appendChild(node);
+     commentss.appendChild(Paragraph);
 
      }
   }
+
 }
 
 
@@ -107,6 +104,9 @@ export function showComments(product) {
     comments.push(json);
     setLocalStorage("so-comment", comments);
     window.location.reload();
+
+
+
   } else {
     console.log("TT")
     Array.from(myForm.querySelectorAll(":invalid"))
