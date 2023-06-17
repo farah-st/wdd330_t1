@@ -23,7 +23,7 @@ export default async function productDetails(productId) {
     
 };
 
-export function productDetailsTemplate(product){
+export function productDetailsTemplate(product, comment){
   const smallerImage = product.Images.PrimarySmall;
   const mediumImage = product.Images.PrimaryMedium;
   const largerImage = product.Images.PrimaryLarge;
@@ -52,6 +52,7 @@ export function productDetailsTemplate(product){
           </form>
           <div class="seeComments">
           <h3>Review</h3>
+          <p class="displayComment">${comment}</p>
           </div>
           `
 };
@@ -65,6 +66,18 @@ function productNotFoundTemplate(){
                 <button>Return to Shop</button>
         </a>
           `
+}
+
+export function showComments(product) {
+
+
+  const showComment = getLocalStorage("so-comment");
+  for(let i = 0; i > showComment.length; i++) {
+     console.log(showComment[i].id)
+     alert("P")
+     i++;
+  }
+ console.log(showComment.length)
 }
 
 
@@ -86,9 +99,7 @@ function productNotFoundTemplate(){
     comments.push(json);
     setLocalStorage("so-comment", comments);
     window.location.reload();
-  }
-      
-  else {
+  } else {
     console.log("TT")
     Array.from(myForm.querySelectorAll(":invalid"))
       .filter((item) => {
