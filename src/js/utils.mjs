@@ -1,3 +1,5 @@
+import { isTokenValid } from "./auth.mjs";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -119,7 +121,7 @@ function loadTemplate(path) {
   }
 }
 
-export async function loadHeaderFooter() {
+export async function loadHeaderFooter(userLogin=true) {
 
    const headerTemplateFn = loadTemplate("/partials/header.html");
    
@@ -127,16 +129,35 @@ export async function loadHeaderFooter() {
 
    const headerE1 = document.querySelector("header");
    const footerE1 = document.querySelector("footer");
+   
    await renderWithTemplate(headerTemplateFn, headerE1, null, updateCartSuperscript);
    await renderWithTemplate(footerTemplateFn, footerE1);
-   document.querySelector("#login-button").addEventListener("click", ()=>{
-    window.open(`/login/index.html?redirect=${location.pathname}`, "_blank").focus();
-   })
-   document.querySelector("#order-button").addEventListener("click", ()=>{
-    window.open(`/orders/index.html`, "_blank").focus();
-   })
+   
+   if(userLogin){
+    const userInterface = document.querySelector("#user-interface");
+    displayUserInterface(userInterface);
+   };
+   
+   
+   
 }
   
+function displayUserInterface(selector){
+  const token = getLocalStorage("so_token")
+  
+  if(isTokenValid(token)){
+    selector.innerHTML = `<button id="order-button">Orders</button>`;
+    document.querySelector("#order-button").addEventListener("click", ()=>{
+      window.open(`/orders/index.html`, "_blank").focus();
+
+    
+     })
+  } else {
+    selector.innerHTML = `<button id="login-button">Login</button>`;
+    document.querySelector("#login-button").addEventListener("click", ()=>{
+      window.open(`/login/index.html?redirect=${location.pathname}`, "_blank").focus()})
+  }
+}
 
 export function alertMessage(message, scroll = true){
     // create element to hold our alert

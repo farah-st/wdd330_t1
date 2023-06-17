@@ -3,7 +3,7 @@ import { loadHeaderFooter } from "./utils.mjs";
 loadHeaderFooter();
 
 function hasSeen() {
-  return localStorage.getItem("bannerSeen") === "true";
+  return localStorage.getItem("bannerSeen") == "true";
 }
 
 function bannerSeen() {

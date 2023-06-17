@@ -3,5 +3,5 @@ import { displayOrder } from "./currentOrders.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 loadHeaderFooter();
 const token = checkLogin();
-const selector = document.querySelector("#order-list");
-displayOrder(token, selector);
+const table = document.querySelector("#order-list");
+displayOrder(token, table);
