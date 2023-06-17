@@ -3,7 +3,7 @@ import productDetails, { showComments } from "./productDetails.mjs";
 
 // search product
 const productID = getParam("product");
-showComments(productID);
-productDetails(productID);
 
+productDetails(productID);
+showComments(productID);
 loadHeaderFooter();

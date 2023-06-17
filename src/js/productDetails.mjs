@@ -11,6 +11,7 @@ export default async function productDetails(productId) {
         throw Error();
       }
       const productComment = document.querySelector(".commentform");
+      const productSeeComment = document.querySelector(".seeComments");
       const productDetails = document.querySelector(".product-detail");
       await renderWithTemplate(productDetailsTemplate,productDetails,product);
       // add listener to Add to Cart button
@@ -28,7 +29,6 @@ export function productDetailsTemplate(product){
   const mediumImage = product.Images.PrimaryMedium;
   const largerImage = product.Images.PrimaryLarge;
   const comment = getLocalStorage("so-comment");
-
 
   return `
           <h3 id="productName">${product.Name}</h3>
@@ -53,9 +53,11 @@ export function productDetailsTemplate(product){
             <button type="submit" id="submit-comment">Submit</button>
           </div>
           </form>
-          <div class="seeComments">
           <h3>Review</h3>
-          <p class="displayComment">${comment[0].id}</p>
+          <div class="seeComments" >
+          <ul id="displayComment">
+          <li>${comment[0].comment}
+          </ul>
           </div>
           `
 };
@@ -71,15 +73,17 @@ function productNotFoundTemplate(){
           `
 }
 
-export function showComments(product, comment) {
+export function showComments(product) {
 
-
+  let commentss = document.getElementById("displayComment").innerHTML;
   const showComment = getLocalStorage("so-comment");
   for(let i = 0; i < showComment.length; i++) {
-    // console.log(showComment[i].id)
+    
      if (showComment[i].id == product) {
-        alert(showComment[i].comment)
-        return showComment[i].comment;
+       console.log(showComment[i].id)
+     commentss = `<li>${showComment[i].comment}<li>`;
+     console.log(document.getElementById("displayComment"))
+
      }
   }
 }
