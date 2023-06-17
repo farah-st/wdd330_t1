@@ -50,7 +50,9 @@ export function productDetailsTemplate(product){
             <button type="submit" id="submit-comment">Submit</button>
           </div>
           </form>
-
+          <div class="seeComments">
+          <h3>Review</h3>
+          </div>
           `
 };
 
@@ -75,8 +77,11 @@ function productNotFoundTemplate(){
     const json = formDataToJSON(document.forms["comment"]);
     json.todays_date = new Date();
     json.id = document.querySelector('input').dataset.id;
-    console.log(document.querySelector('input').value)
-    console.log(document.querySelector('input').dataset.id)
+    // console.log(document.querySelector('input').value)
+    // console.log(document.querySelector('input').dataset.id)
+    localStorage.setItem(json, JSON.stringify(json));
+    let retrieveUserData = localStorage.getItem(document.forms["comment"].value);
+    console.log(retrieveUserData);
     
   } else {
     console.log("TT")
