@@ -70,20 +70,23 @@ function productNotFoundTemplate(){
 
  function addComment(e) {
   e.preventDefault();
+  const comments = getLocalStorage("so-comment");
+  if ((getLocalStorage("so-comment") === null)) {
+    setLocalStorage("so-comment", []);
+    console.log(getLocalStorage("so-comment"))
+  };
   var myForm = document.forms[0];
   var chk_status = myForm.checkValidity();
   if (chk_status) {
-    document.forms["comment"];
     const json = formDataToJSON(document.forms["comment"]);
     json.todays_date = new Date();
     json.id = document.querySelector('input').dataset.id;
-    // console.log(document.querySelector('input').value)
-    // console.log(document.querySelector('input').dataset.id)
-    localStorage.setItem(json, JSON.stringify(json));
-    let retrieveUserData = localStorage.getItem(document.forms["comment"].value);
-    console.log(retrieveUserData);
     
-  } else {
+    console.log(setLocalStorage("so-comment"))
+    setLocalStorage("so-comment", [json]);
+  }
+      
+  else {
     console.log("TT")
     Array.from(myForm.querySelectorAll(":invalid"))
       .filter((item) => {
