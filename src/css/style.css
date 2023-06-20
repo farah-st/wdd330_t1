@@ -289,7 +289,22 @@ button {
   grid-column: 3;
 }
 
-@media screen and (min-width: 500px) {
+/* login button */
+button{
+  /* position: relative;
+  top: 10px; */
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 500;
+  margin: 0 10px;
+  width: 150px;
+  padding: 10px 0;
+  box-shadow: 0 0 20px #d0d0d0;
+  background-color: #e5aa72;
+}
+
+@media only screen and (min-width: 480px) {
   body {
     max-width: 1080px;
     margin: auto;
@@ -355,3 +370,9 @@ footer {
 #register-btn:hover {
   background-color: var(--light-grey);
 }
+
+/* login button */
+/* #login-button{
+  position: relative;
+  top: 0px
+} */
