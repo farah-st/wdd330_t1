@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/main.css" />
     <script src="./js/main.js" type="module"></script>
+    <script src="./js/newsletter.js" type="module"></script>
   </head>
   <body>
     <div class="modal">
@@ -81,6 +83,10 @@
           </li>
         </ul>
       </section>
+      <form id="newsletterForm" action="subscribe.php" method="POST">
+        <input type="email" name="email" id="emailInput" placeholder="Enter your email" required>
+        <input type="submit" value="Subscribe">
+      </form>    
     </main>
     <footer id="main-footer"></footer>
   </body>
