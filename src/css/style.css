@@ -17,7 +17,7 @@
   box-sizing: border-box;
 }
 body {
-  margin: 0;
+  margin: 0 auto;
   font-family: var(--font-body);
   font-size: var(--font-base);
   color: var(--dark-grey);
@@ -81,16 +81,6 @@ header {
   color: var(--tertiary-color);
 }
 
-button {
-  padding: 0.5em 2em;
-  background-color: var(--secondary-color);
-  color: white;
-  margin: auto;
-  display: block;
-  border: 0;
-  font-size: var(--large-font);
-  cursor: pointer;
-}
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -203,7 +193,9 @@ button {
 
 /* Styles for product lists */
 .product-card {
-  flex: 1 1 45%;
+  display: block;
+  justify-content: center;
+  /* flex: 1 1 45%; */
   margin: 0.25em;
   padding: 0.5em;
   border: 1px solid var(--light-grey);
@@ -289,12 +281,10 @@ button {
   grid-column: 3;
 }
 
-/* login button */
+/* button */
 button{
   /* position: relative;
   top: 10px; */
-  cursor: pointer;
-  border: 0;
   border-radius: 4px;
   font-weight: 500;
   margin: 0 10px;
@@ -302,7 +292,16 @@ button{
   padding: 10px 0;
   box-shadow: 0 0 20px #d0d0d0;
   background-color: #e5aa72;
+    /* padding: 0.5em 2em; */
+  /* background-color: var(--secondary-color); */
+  color: white;
+  /* margin: auto; */
+  /* display: block; */
+  border: 0;
+  font-size: var(--large-font);
+  cursor: pointer;
 }
+
 
 @media only screen and (min-width: 480px) {
   body {
