@@ -1,6 +1,7 @@
 import { getLocalStorage, renderWithTemplate, setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./externalServices.mjs";
 import { backpackAnimation, getParam } from "./utils.mjs";
+import { formDataToJSON } from "./checkoutProcess.mjs";  
 
 // Main function
 export default async function productDetails(productId) {
@@ -9,6 +10,8 @@ export default async function productDetails(productId) {
       if (product === undefined) {
         throw Error();
       }
+      const productComment = document.querySelector(".commentform");
+      const productSeeComment = document.querySelector(".seeComments");
       const productDetails = document.querySelector(".product-detail");
       await renderWithTemplate(productDetailsTemplate,productDetails,product);
       
@@ -43,6 +46,8 @@ export default async function productDetails(productId) {
 
       // add listener to Add to Cart button
       document.getElementById("addToCart").addEventListener("click", addToCartHandler);
+      
+      document.getElementById("submit-comment").addEventListener("click", addComment);
     } catch {
       const productDetails = document.querySelector(".product-detail");
       renderWithTemplate(productNotFoundTemplate,productDetails);
@@ -68,6 +73,17 @@ export function productDetailsTemplate(product){
           <div class="product-detail__add">
             <button id="addToCart">Add to Cart</button>
           </div>
+
+          <form name="comment" class="grid">
+          <div class="commentform">
+            <fieldset>
+            <p></p>
+            <label for="comment" > Add a Comment </label>
+            <input type="text" placeholder="add comment here" name="comment" data-id=${product.Id}>
+            </fieldset>
+            <button type="submit" id="submit-comment">Submit</button>
+          </div>
+          </form>
           `
 };
 
@@ -140,3 +156,54 @@ async function addToCartHandler() {
   backpackAnimation();
 }
 
+
+export async function showComments(product) {
+
+  const showComment = getLocalStorage("so-comment");
+  for(let i = 0; i < showComment.length; i++) {
+    
+     if (showComment[i].id == product) {
+
+     const commentss = document.getElementById("displayComment");
+     const Paragraph = document.createElement("p");
+     const node = document.createTextNode(showComment[i].comment);
+     Paragraph.appendChild(node);
+     commentss.appendChild(Paragraph);
+
+     }
+  }
+
+}
+
+function addComment(e) {
+  e.preventDefault();
+  
+  if ((getLocalStorage("so-comment") == null)) {
+    setLocalStorage("so-comment", []);
+  };
+  const comments = getLocalStorage("so-comment");
+  var myForm = document.forms[0];
+  var chk_status = myForm.checkValidity();
+  if (chk_status) {
+
+    const json = formDataToJSON(document.forms["comment"]);
+    json.todays_date = new Date();
+    json.id = document.querySelector('input').dataset.id;
+    comments.push(json);
+    setLocalStorage("so-comment", comments);
+    window.location.reload();
+
+
+
+  } else {
+    Array.from(myForm.querySelectorAll(":invalid"))
+      .filter((item) => {
+        let fieldsetPresent = item.tagName.toLowerCase() !== "fieldset";
+        return fieldsetPresent;
+      })
+      .reverse()
+      .map((item) => {
+        alertMessage(item.dataset.name);
+      });
+  }
+}
