@@ -1,9 +1,11 @@
-import { loadHeaderFooter, getParam } from "./utils.mjs";
+import { loadHeaderFooter, getParam, addBreadcrumbs } from "./utils.mjs";
 import productList from "./productList.mjs";
+
 
 const categoryId = getParam("category");
 
 loadHeaderFooter();
+addBreadcrumbs();
 productList(".product-list", categoryId);
 
 const sortSelect = document.getElementById("sort-select");
