@@ -42,6 +42,11 @@ function calculateDiscount(maxValue, minValue) {
     return discount.toFixed();
 }
 
+function dollarsSaved(maxValue, minValue) {
+  let dollars = maxValue - minValue;
+  return dollars.toFixed();
+}
+
 function discountTemplate(product) {
     if (product.FinalPrice < product.SuggestedRetailPrice) {
       return `<p class="product-card__without-discount-price">$${product.SuggestedRetailPrice}</p>
@@ -50,7 +55,9 @@ function discountTemplate(product) {
                 product.SuggestedRetailPrice,
                 product.FinalPrice
               )}% OFF</span>
-              </p>`;
+              </p>
+
+              <h2 class="savings">YOU SAVE $${dollarsSaved(product.SuggestedRetailPrice, product.FinalPrice)}</h2>`;
     } else {
       return `<p class="product-card__price">$${product.FinalPrice}</p>`;
     }

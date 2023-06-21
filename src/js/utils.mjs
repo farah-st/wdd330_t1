@@ -1,4 +1,5 @@
 import { isTokenValid } from "./auth.mjs";
+import { getProductsByCategory, findProductById } from "./externalServices.mjs";
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -75,6 +76,30 @@ export function backpackAnimation() {
   }
 }
 
+export async function addBreadcrumbs() {
+
+  // get the list of products 
+  const categoryId = getParam("category");
+  const cat = await getProductsByCategory(categoryId);
+  const breadCr = document.getElementById("breadcrumbs");
+  const breadCrumbsParagraph = document.createElement("p");
+  const node = document.createTextNode(categoryId + " >> " + cat.length + " Items");
+  breadCrumbsParagraph.appendChild(node);
+  breadCr.appendChild(breadCrumbsParagraph);
+
+  if (categoryId == null) { 
+    let removeBread = document.getElementById("breadcrumbs");
+    removeBread.removeChild(breadCrumbsParagraph);
+
+    const getproductId = getParam("product");
+    const product = await findProductById(getproductId);
+
+ const breadCrumbsParagraph2 = document.createElement("p");
+    const node = document.createTextNode(product.Category);
+  breadCrumbsParagraph2.appendChild(node);
+  breadCr.appendChild(breadCrumbsParagraph2);
+  }
+}
 
 
 export function renderListWithTemplate (templateFn, parentElement, list, position = "afterbegin", clear = true){
@@ -137,9 +162,6 @@ export async function loadHeaderFooter(userLogin=true) {
     const userInterface = document.querySelector("#user-interface");
     displayUserInterface(userInterface);
    };
-   
-   
-   
 }
   
 function displayUserInterface(selector){
