@@ -69,7 +69,7 @@ function sortProducts(productsArray, orderBy) {
   }
 
   function filterByNameProducts(productList, textFilter){
-    if (!textFilter==""){
+    if (!textFilter == ""){
         return productList.filter((item) => 
         item.Name.toLowerCase().includes(textFilter.toLowerCase()));
     }

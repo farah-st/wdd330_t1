@@ -18,9 +18,9 @@ document.getElementById("newsletterForm").addEventListener("submit", function(ev
     .then(function(response) {
       // Handle the server response here
       if (response.ok) {
-        alert("You have successfully signed up for the newsletter!");
+        alert("Please try again. Newsletter subscription failed.");
       } else {
-        alert("Newsletter subscription failed. Please try again.");
+        alert("You have successfully signed up for the newsletter!");
       }
     })
     .catch(function(error) {
