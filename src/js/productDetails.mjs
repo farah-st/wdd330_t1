@@ -79,7 +79,7 @@ export function productDetailsTemplate(product){
             <fieldset>
             <p></p>
             <label for="comment" > Add a Comment </label>
-            <input type="text" placeholder="add comment here" name="comment" data-id=${product.Id}>
+            <input type="text" placeholder="add comment here" class="CommentInput" name="comment" data-id=${product.Id}>
             </fieldset>
             <button type="submit" id="submit-comment">Submit</button>
           </div>
@@ -177,7 +177,6 @@ export async function showComments(product) {
 
 function addComment(e) {
   e.preventDefault();
-  
   if ((getLocalStorage("so-comment") == null)) {
     setLocalStorage("so-comment", []);
   };
@@ -188,7 +187,8 @@ function addComment(e) {
 
     const json = formDataToJSON(document.forms["comment"]);
     json.todays_date = new Date();
-    json.id = document.querySelector('input').dataset.id;
+   
+     json.id = document.querySelector('.CommentInput').dataset.id;
     comments.push(json);
     setLocalStorage("so-comment", comments);
     window.location.reload();
