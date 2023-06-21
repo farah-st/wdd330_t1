@@ -1,29 +1,30 @@
-// function createAlerts(alertData) {
-//     const alertContainer = document.getElementById("alert-list");
+function createAlerts(alertData) {
+    const alertContainer = document.getElementById("alert-list");
   
-//     alertData.forEach(alert => {
-//       const { message, background } = alert;
+    alertData.forEach(alert => {
+      const { message, background, color } = alert;
   
-//       const alertElement = document.createElement("div");
-//       alertElement.className = "alert";
-//       alertElement.textContent = message;
-//       alertElement.style.backgroundColor = background;
+      const alertElement = document.createElement("div");
+      alertElement.className = "alert";
+      alertElement.textContent = message;
+      alertElement.style.backgroundColor = background;
+      alertElement.style.color = color;
   
-//       alertContainer.appendChild(alertElement);
-//     });
-//   }
+      alertContainer.appendChild(alertElement);
+    });
+  }
 
-// fetch("alert.json")
-//   .then(response => response.json())
-//   .then(data => {
-//     // Process the alert data
-//     createAlerts(data);
-//   })
-//   .catch(error => {
-//     console.error("Error fetching alerts:", error);
-//   });
+fetch("../public/json/alert.json")
+  .then(response => response.json())
+  .then(data => {
+    // Process the alert data
+    createAlerts(data);
+  })
+  .catch(error => {
+    console.error("Error fetching alerts:", error);
+  });
 
-// second try
+//// second try
 // const baseUrl = "json/alert.json";
 // export default class Alert {
 //   constructor(alert, background, color) {
