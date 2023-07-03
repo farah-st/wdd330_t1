@@ -70,6 +70,11 @@ export function productDetailsTemplate(product){
           <p class="product-card__price" id="productFinalPrice">$${product.FinalPrice}</p>
           <div class="product-colors">${displayColors(product.Colors)}</div>
           <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
+
+          <div class="extra-images">
+          ${displayExtraImages(product.Images.ExtraImages)}
+          </div>
+
           <div class="product-detail__add">
             <button id="addToCart">Add to Cart</button>
           </div>
@@ -96,6 +101,22 @@ function productNotFoundTemplate(){
                 <button>Return to Shop</button>
         </a>
           `
+}
+
+function displayExtraImages(ExtraImages){
+  console.log(ExtraImages);
+  const htmlElements = ExtraImages.map((item)=>{
+  
+    return `
+              <div class="product-carousel">
+              <img
+                src="${item.Src}"
+                alt="${item.Title}"
+                class="carousel" > 
+           </div>
+            `
+  });
+  return htmlElements.join("");
 }
 
 function displayColors(colorsList){
