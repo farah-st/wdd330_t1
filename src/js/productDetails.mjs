@@ -44,6 +44,32 @@ export default async function productDetails(productId) {
             }
         })
 
+
+
+
+
+
+        console.log(document.querySelector(".extra-images"))
+
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        
+        function showSlides(n) {
+          let i;
+          let slides = document.querySelector(".product-extra-images");
+          if (n > slides.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+          }
+          slides[slideIndex-1].style.display = "block"; 
+        }
+
+
+
+
+
       // add listener to Add to Cart button
       document.getElementById("addToCart").addEventListener("click", addToCartHandler);
       
@@ -73,11 +99,10 @@ export function productDetailsTemplate(product){
 
           <div class="extra-images">
           ${displayExtraImages(product.Images.ExtraImages)}
-  <a class="prev" onclick="${plusSlides(-1, 0)}">&#10094;</a>
-  <a class="next" onclick="${plusSlides(1, 0)}">&#10095;</a>
-
- 
+          <a class="prev" onclick="plusSlides(-1)"><</a>
+          <a class="next" onclick="plusSlides(1)">></a>
           </div>
+
 
           <div class="product-detail__add">
             <button id="addToCart">Add to Cart</button>
@@ -108,11 +133,11 @@ function productNotFoundTemplate(){
 }
 
 function displayExtraImages(ExtraImages){
-  console.log(ExtraImages);
+ 
   const htmlElements = ExtraImages.map((item)=>{
   
     return `
-              <div class="product-carousel">
+        <div class="product-extra-images">
               <img
                 src="${item.Src}"
                 alt="${item.Title}"
@@ -120,6 +145,8 @@ function displayExtraImages(ExtraImages){
            </div>
             `
   });
+
+
   return htmlElements.join("");
 }
 
@@ -233,26 +260,26 @@ function addComment(e) {
   }
 }
 
+//console.log(document.querySelector("product-colors"))
+// let slideIndex = 1;
+// showSlides(slideIndex);
 
-let slideIndex = [0, 1];
-let slideId = ["product-carousel"];
+// function plusSlides(n) {
+//   showSlides(slideIndex += n);
+// }
 
-showSlides(1, 0);
-
-function plusSlides(n, no) {
-  showSlides(slideIndex[no] += n, no);
-}
-
-function showSlides(n, no) {
-  let i;
-  let x = document.getElementsByClassName(slideId[no]);
-  //console.log(x);
-  if (n > x.length) {slideIndex[no] = 1}    
-  if (n < 2) {slideIndex[no] = x.length}
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";  
-  }
-  console.log(x[no]);
-  //x.style.display = "block";  
-}
+ 
+// function showSlides(n) {
+//   let i;
+//   let x = document.querySelector(".carousel");
+  
+  
+//   // if (n > x.length) {slideIndex = 1}    
+//   // if (n < 1) {slideIndex = x.length}
+//   // for (i = 0; i < x.length; i++) {
+//   //    x[i].style.display = "none";  
+//   // }
+//   // console.log(x.length)
+// // x[slideIndex-1].style.display = "block"; 
+// }
 
