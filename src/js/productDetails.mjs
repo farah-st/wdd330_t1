@@ -49,6 +49,7 @@ export default async function productDetails(productId) {
 
 
 
+
         console.log(document.querySelector(".extra-images"))
 
         let slideIndex = 1;
@@ -63,7 +64,7 @@ export default async function productDetails(productId) {
           for (i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";  
           }
-         // slides[slideIndex-1].style.display = "block"; 
+        //  slides[slideIndex-1].style.display = "block"; 
         }
 
 
