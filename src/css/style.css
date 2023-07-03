@@ -306,8 +306,7 @@ button{
   font-size: var(--large-font);
   cursor: pointer;
 }
-
-.product-carousel {display: none;}
+.product-extra-images{display:none;}
 img {vertical-align: middle;}
 
 /* Slideshow container */
