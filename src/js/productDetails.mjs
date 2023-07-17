@@ -10,6 +10,7 @@ export default async function productDetails(productId) {
       if (product === undefined) {
         throw Error();
       }
+        let n = 0;
       const productComment = document.querySelector(".commentform");
       const productSeeComment = document.querySelector(".seeComments");
       const productDetails = document.querySelector(".product-detail");
@@ -46,35 +47,18 @@ export default async function productDetails(productId) {
 
 
 
-
-
-
-
-        console.log(document.querySelector(".extra-images"))
-
-        let slideIndex = 1;
-        showSlides(slideIndex);
-
-        
-        function showSlides(n) {
-          let i;
-          let slides = document.querySelector(".product-extra-images");
-          if (n > slides.length) {slideIndex = 1}    
-          if (n < 1) {slideIndex = slides.length}
-          for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-          }
-        //  slides[slideIndex-1].style.display = "block"; 
-        }
-
-
-
-
-
       // add listener to Add to Cart button
       document.getElementById("addToCart").addEventListener("click", addToCartHandler);
       
       document.getElementById("submit-comment").addEventListener("click", addComment);
+      
+      document.querySelector(".prev").addEventListener("click", minusSlides);
+
+      document.querySelector(".next").addEventListener("click", plusSlides);
+
+
+
+
     } catch {
       const productDetails = document.querySelector(".product-detail");
       renderWithTemplate(productNotFoundTemplate,productDetails);
@@ -86,6 +70,7 @@ export function productDetailsTemplate(product){
   const smallerImage = product.Images.PrimarySmall;
   const mediumImage = product.Images.PrimaryMedium;
   const largerImage = product.Images.PrimaryLarge;
+  let n = 0;
   return `
           <h3 id="productName">${product.Name}</h3>
           <h2 class="divider" id="productNameWithoutBrand">${product.Brand.Name}</h2>
@@ -99,9 +84,9 @@ export function productDetailsTemplate(product){
           <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
 
           <div class="extra-images">
-          ${displayExtraImages(product.Images.ExtraImages)}
-          <a class="prev" onclick="plusSlides(-1)"><</a>
-          <a class="next" onclick="plusSlides(1)">></a>
+
+          <a class="prev">&#10094;</a>
+          <a class="next">&#10095;</a>
           </div>
 
 
@@ -133,23 +118,51 @@ function productNotFoundTemplate(){
           `
 }
 
-function displayExtraImages(ExtraImages){
- 
-  const htmlElements = ExtraImages.map((item)=>{
-  
-    return `
-        <div class="product-extra-images">
-              <img
-                src="${item.Src}"
-                alt="${item.Title}"
-                class="carousel" > 
-           </div>
-            `
-  });
+async function plusSlides(n) {
+  const productID = getParam("product");
+  const products = await findProductById(productID);
 
-
-  return htmlElements.join("");
+  // return `
+  // <div class="product-extra-images">
+  //       <img
+  //         src="${product.Images.ExtraImages[n].Src}"
+  //         alt="${product.Images.ExtraImages[n].Title}">
+  //    </div>
+  //     `
+  n += 1;
+  console.log(n);
+  console.log(products);
+  return n;
 }
+
+async function minusSlides(n){
+  const productID = getParam("product");
+  const product = await findProductById(productID);
+
+  // return `
+  // <div class="product-extra-images">
+  //       <img
+  //         src="${product.Images.ExtraImages[2].Src}"
+  //         alt="${product.Images.ExtraImages[2].Title}">
+  //    </div>
+  //     `
+  n -= 1;
+  console.log(n)
+  return n;
+}
+
+
+
+// function displayExtraImages(ExtraImages){
+
+//     return `
+//         <div class="product-extra-images">
+//               <img
+//                 src="${ExtraImages[0].Src}"
+//                 alt="${ExtraImages[0].Title}">
+//            </div>
+//             `
+// }
 
 function displayColors(colorsList){
   const htmlElements = colorsList.map((item)=>{
